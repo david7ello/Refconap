@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.imgC {
+    float: left; 
+    top: 17%;
+    left: 12%;
+    
+}
+
+.menuEjeDos ul a {
+    text-decoration: none;
+    display: block;
+}
+
+
+
+.botConf {
+    width: 10%;
+    
+    /*top:35%;
+    left: 77%;*/
+    position: absolute;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    /*background-image: url('../imagenes/browse.svg');*/
+    background-position: 2%;
+    font-size: 1em;
+    color: white;
+    background-color: rgb(24,134,190);
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    border: 2px solid #1883ba;  
+}
+
+.botConf:hover{
+    color: black; 
+    background-color: rgb(217, 217, 214, .5);
+  }

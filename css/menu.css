@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+.navbar, .dropdown-menu{
+    background: linear-gradient(to bottom, #e9e2ec, #997ba8);
+    box-shadow: 4px 4px 4px rgba(72,38,128,.5);
+    border: #482680;
+    color: #fff;
+  }
+
+  .navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
+    color: #482680;
+    font-size:16px;
+    font-weight: bold;
+  }
+
+  .navbar-toggle .icon-bar{
+    color: #482680;
+    background: #482680;
+    font-size:16px;
+    height: 50px;
+  }

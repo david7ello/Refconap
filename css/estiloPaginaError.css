@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	background-color: #011f37;
+	
+}
+
+.col_body{
+	border: 2px solid;
+    border-radius:15px 15px 15px 15px;
+	background-color:#FFFFFF;
+	opacity:0.9;
+	width:900px;
+	height: 230px;
+	display:inline-block;
+	
+}
+
+.col_imagen{
+	width:400px;
+	height: 200px;
+}

@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+
+.navbar, .dropdown-menu{
+  background: linear-gradient(to bottom, #f2eff3, #c7c5c5);
+  box-shadow: 4px 4px 4px rgba(151, 150, 151, 0.5);
+  border: #b5b4b6;
+}
+
+.nav>li>a:focus, .nav>li>a:hover,.nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover{
+  background: linear-gradient(to bottom, #f2eff3, #e7e7e7);
+  
+}
+
+.navbar a, .dropdown-menu>li>a, .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .navbar-toggle{
+  color: #556080;
+  font-size:16px;
+  font-weight: bold;
+}
+
+.navbar-toggle .icon-bar{
+  color: #556080;
+  background: #482680;
+  font-size:16px;
+  height: 50px;
+}
+

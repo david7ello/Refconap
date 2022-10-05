@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	/*background: #f9f9f9;*/
+	/*background: linear-gradient(to bottom, #fff, #f1f1f1);*/ 
+	font-size:18px;
+	padding: 15px 20px;
+	color:#484848;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+/* Para Expandir el fondo de pantalla */
+
+#background { 
+	width: 100%; 
+	height: 100%; 
+	position: fixed; 
+	left: 0px; 
+	top: 0px; 
+	z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */ 
+} 
+
+.stretch { 
+	width:100%; 
+	height:100%; 
+}
+/*-----------------------------------------------------------------------------------------------*/
+
+/* Estilo para el login*/
+.div_container_sesion {
+    width:auto;
+    top: 0;
+    left: 0;
+    padding: 5px 5px;
+	box-shadow: 4px 4px 4px rgba(72,38,128,.5); /* Poner sombra al menu n la parte inferior*/
+    border: 1px solid #482680;
+	border-radius:8px;
+	background-color: #FFF;
+    /* background: linear-gradient(to bottom, #fff, #f1f1f1);  Degradado de dos colores*/
+	min-height: 100px;
+	opacity: 0.90; /* Poner un grado de trasparencia*/
+}
+
+.div_container_title_sesion { 
+	width:auto; 
+	height:30px;
+	margin-left:-6px; 
+	margin-top:-6px;
+	margin-right:-6px;
+	border-radius: 8px 8px 0px 0px;
+	border: 1px solid #482680;
+	/* background: linear-gradient(to bottom, #d1b5c3, #997ba8); */
+	background: linear-gradient(to bottom, #d1b5c3, #997ba8); 
+	position: relative;
+	padding-left: 8px;
+	padding-top: 7px;
+	padding-bottom: -4px;	
+}
+
+.font_title_sesion {
+	/*padding-left:inherit; 
+	padding-bottom: 15px;
+	padding-top:5px; */
+	padding:10px 20px;
+	color:#fff; 
+	font-size:18px;
+}
+
+.font_label_sesion {
+	font-size:16px;
+	color:#777;
+}
+
+.contacto_index{
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(to bottom, #FFFFFF, #d1b5c3);  /* Degradado del fondo */ 
+	width: 100%;
+	height:80px;
+	box-shadow: 0px 4px 4px rgba(72,38,128,.5); /* Poner sombra al menu n la parte inferior*/
+	display:block;
+	box-sizing:border-box;
+	
+}
+/*-----------------------------------------------------------------------------------------------*/
+
+/* Formato de los titulos de los "div_container_title" */ 
+.font_title {
+	padding-left:inherit; 
+	padding-top:5px; 
+	color:#482680; 
+	font-size:16px;
+	font-weight: bold;
+}
+
+/* Estilo para el login*/
+.div_container {
+    width:auto;
+    top: 0;
+    left: 0;
+    padding: 5px;
+	box-shadow: 4px 4px 4px rgba(201,201,201,.5); /* Poner sombra al menu n la parte inferior*/
+    border: 1px solid #d7d7d7;
+	border-radius: 12px 0px 12px 0px;
+	background: #FFF;
+    /* background: linear-gradient(to bottom, #fff, #f1f1f1);  Degradado de dos colores*/
+}
+
+.div_container_title { 
+	width:auto; 
+	height:29px;
+	margin-left:-6px; 
+	margin-top:-6px;
+	margin-right:-6px;
+	border-radius: 12px 0px 0px 0px;
+	border: 1px solid #d7d7d7;
+	background: linear-gradient(to bottom, #fff, #e1e1e1);
+	position: relative;
+	padding-left: 8px;
+	padding-top: 7px;
+	padding-bottom: -4px;	
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+/*
+button {
+	box-shadow: 0px 5px 5px rgba(231,223,234,.5); /* Poner sombra al menu n la parte inferior*/
+	/*
+	background:#482680;
+	color:#482680;
+}
+*/
+select{
+	height:30px;
+	border-radius: 6px;
+	background-color:#FFFFFF;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+.color_title_table {
+	background: linear-gradient(to bottom, #fff, #e1e1e1);
+	color:#6b6a6a;
+	font-size: 14px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+.font_comentarios {
+	padding-left:inherit; 
+	padding-top:5px; 
+	color:#777; 
+	font-size:12px;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+.estilo_modal_header{
+	background: linear-gradient(to bottom, #fff, #997ba8); 
+	border-radius: 12px 12px 0px 0px;
+}
+
+
