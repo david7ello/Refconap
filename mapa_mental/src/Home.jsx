@@ -4,18 +4,21 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div className='app1'>
+    <div className='app'>
+        <div className='app1'>
+
         <h1>¿Como quieres entrar?</h1>
-        <Link to={"/maestros"}>
+        <Link to={"/crearActividad"}>
         <button>Profesor</button>
         </Link>
         <br/>
-        <Link to={"/cuestionarios"}>
+        <Link to={"/seleccionCurso"}>
         <button>Alumno</button>
         </Link>
         <Link to={"/crear"}>
           <button>crear</button>
         </Link>
+        </div>
     </div>
   )
 }
