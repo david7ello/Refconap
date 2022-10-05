@@ -4,6 +4,7 @@ import PreguntasSelect from "./PreguntasSelect";
 import {Routes,Route} from "react-router-dom";
 import NombreActividad from "./NombreActividad";
 import { SeleccionarCurso } from './SeleccionarCurso';
+import Home from "./Home"
 
 
 
@@ -11,6 +12,7 @@ const AppRouter = () => {
   return (
     <div>
         <Routes>
+        <Route path='/' element={<Home/>}/>
             <Route path='/altaEjercicioDos' element={<CrearPreguntas/>}/>
             <Route path='/resolverEjercicio2' element={<PreguntasSelect/>}/>
             <Route path='/crearActividad' element={<NombreActividad/>}/>
