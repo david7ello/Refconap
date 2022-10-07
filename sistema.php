@@ -24,7 +24,7 @@ include("menu.php")
 <div align="center">
 	<div class="col-md-2 text-center"></div>
 	<div class="col-md-8 text-center" >
-		<div class="list-group" style="">
+		<div class="list-group" >
 			<br>
 			<div class="row">
 				<div class="col-md-5 text-center" >

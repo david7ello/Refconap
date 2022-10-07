@@ -20,11 +20,11 @@ include("head.php")
 
         <section class="menuEjeDos">
             <ul>
-                <a href="./mapa_mental/dist/index.html">Alta actividad</a>
+                <a href="http://127.0.0.1:5173/crearActividad">Alta actividad</a>
                 <a href="#">Consultar actividad</a>
-                <a href="#">Resolver actividad</a>
+                <a href="http://127.0.0.1:5173/seleccionCurso">Resolver actividad</a>
                 <a href="#">Cerrar</a>
-
+                
 
             </ul>
 
@@ -53,9 +53,12 @@ include("head.php")
             <a href="/cerrar.php"><input class="botCerrar" type="submit" value="CERRAR SESIÓN"/></a>
             </div> -->
         </section>
-
     </main>
 
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Cargamos nuestro componente de React. -->
+    <script src="./mapa_mental/src/Home.jsx"></script>
 
 </body>
 

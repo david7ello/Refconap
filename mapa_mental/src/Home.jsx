@@ -22,5 +22,8 @@ const Home = () => {
     </div>
   )
 }
+// const domContainer = document.querySelector('#Home');
+// const root = ReactDOM.createRoot(domContainer);
+// root.render(e(Home))
 
 export default Home
