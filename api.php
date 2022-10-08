@@ -55,7 +55,11 @@ if ($method == 'GET') {
       echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
     }
     echo ']';
-  } 
+  } elseif ($method == 'POST') {
+    echo json_encode($result);
+  } else {
+    echo mysqli_affected_rows($con);
+  }
   
 
 $con->close();

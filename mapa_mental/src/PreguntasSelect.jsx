@@ -11,6 +11,19 @@ const PreguntasSelect = () => {
     const [tiempoRestante, setTiempoRestante] = useState(10);
     const [areDisable, setAreDisable] = useState(false);
     const [mostrarCorrectas,setMostrarCorrectas] = useState(false);
+    const [data, setData] = useState()
+    const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+      fetch.post("http://localhost:8000/api.php")
+        .then((response) => response.json())
+        .then((data) =>{
+          setData(data)
+          setIsLoading(false)
+        } );
+    }, []);
+    console.log(data)
+
 
     function siguientePregunta(isCorrect,e){
         //añadir puntos
@@ -24,14 +37,14 @@ const PreguntasSelect = () => {
           setisFinished(true)
         } else{
           setPreguntaActual(preguntaActual+1)
-        }},1000);
+        }},1000000);
       }
     
       useEffect(() => {
         const interval=setInterval(()=>{
           if(tiempoRestante>0) setTiempoRestante((prev)=>prev-1)
           if(tiempoRestante===0)setAreDisable(true)
-        },1000);
+        },1000000);
     
         return()=> clearInterval(interval);
       }, [tiempoRestante]);
@@ -86,6 +99,14 @@ if (mostrarCorrectas)
           </div>
         </main>
   );
+  if (isLoading === true) {
+    // ⬅️ si está cargando, mostramos un texto que lo indique
+    return (
+      <div>
+        <h1>Cargando...</h1>
+      </div>
+    );
+  }
 
 return (
     <main className="app">

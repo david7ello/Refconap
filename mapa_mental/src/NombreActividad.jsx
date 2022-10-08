@@ -10,14 +10,26 @@ const NombreActividad = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api.php").then((response) => {
-      setData(response.data);
-      setIsLoading(false);
-    });
+    fetch("http://localhost:8000/api.php")
+      .then((response) => response.json())
+      .then((data) =>{
+        setData(data)
+        setIsLoading(false)
+      } );
   }, []);
-  console.log(data);
+  console.log(data)
+ 
+  
+
+  // const postPreguntas=(e)=>{
+  //   e.preventDefault();
+  //   axios.post()
+  // }
+  
+
 
   const handleChange = (e) => {
+    e.preventDefault()
     setNombreAct(e.target.value);
   };
 
@@ -44,8 +56,8 @@ const NombreActividad = () => {
           <option>selecciona tu grupo</option>
           {data.map((item, index) => {
             return (
-              <option key={index + 1} value={item.name}>
-                {item.name}
+              <option key={index + 1} value={item.nombre}>
+                {item.nombre}
               </option>
             );
           })}

@@ -3,9 +3,9 @@
 //FUNCION PARA LA CONECCION A LA BASE DE DATOS (SERVER, USUARIO, PASS)
 function Conectarse_general()
 {
-	$serv_activo = 1;
+	// $serv_activo = 1;
 
-	if ($serv_activo == 1) {
+	// if ($serv_activo == 1) {
 		// Dirección o IP del servidor MySQL
 		$host = "localhost";
 		// Puerto del servidor MySQL
@@ -16,19 +16,19 @@ function Conectarse_general()
 		$contrasena = "";
 		// Nombre de la base de datos
 		$baseDeDatos = "refconap";
-	}
-	if ($serv_activo == 2) {
-		// Dirección o IP del servidor MySQL
-		$host = "localhost";
-		// Puerto del servidor MySQL
-		$puerto = "3306";
-		// Nombre de usuario del servidor MySQL
-		$usuario = "";
-		// Contraseña del usuario
-		$contrasena = "";
-		// Nombre de la base de datos
-		$baseDeDatos = "";
-	}
+	// }
+	// if ($serv_activo == 2) {
+	// 	// Dirección o IP del servidor MySQL
+	// 	$host = "localhost";
+	// 	// Puerto del servidor MySQL
+	// 	$puerto = "3306";
+	// 	// Nombre de usuario del servidor MySQL
+	// 	$usuario = "";
+	// 	// Contraseña del usuario
+	// 	$contrasena = "";
+	// 	// Nombre de la base de datos
+	// 	$baseDeDatos = "";
+	// }
 
 	if (!($link = mysqli_connect($host . ":" . $puerto, $usuario, $contrasena))) {
 		echo "Error conectando a la base de datos.";
