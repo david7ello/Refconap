@@ -5,13 +5,19 @@
   body {
     margin: 0;
     color: #fff;
-    background-color: #fcfcfc;
+    background: linear-gradient(125deg, #fff 60%, #4895ef 90%);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
   }
   
+  .centrado {
+    margin-left: auto; 
+    margin-right: auto;
+  }
+
+
   .app {
     background-color: #252d4a;
     max-width: 650px;
@@ -89,7 +95,26 @@
     align-items: center;
     border: 5px solid #234668;
     cursor: pointer;
+    margin-top: 5px;
   }
+
+  .buttons {
+    width: 93%;
+    font-size: 16px;
+    color: grey;
+    background-color: #252d4a;
+    border-radius: 15px;
+    display: flex;
+    padding: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 5px solid #234668;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+
+
+
 
   img {
     width: 20%;

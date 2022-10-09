@@ -11,24 +11,29 @@ const crearPreguntas = () => {
   const [img4, setImg4] = useState();
 
   const handleChange = (e) => {
-    setCambioCheck(e.target.value);
     setPregunta(e.target.value);
   };
 
+  const respuestaCorrecta=(e)=>{
+    setCambioCheck(e.target.value);
+  };
+
   const cargarImg1 = (e) => {
-    setImg1(e.target.value);
+    setImg1(e.target.files);
   };
 
   const cargarImg2 = (e) => {
-    setImg2(e.target.value);
+    setImg2(e.target.files);
   };
 
   const cargarImg3 = (e) => {
-    setImg3(e.target.value);
+    setImg3(e.target.files);
   };
   const cargarImg4 = (e) => {
-    setImg4(e.target.value);
+    setImg4(e.target.files);
   };
+
+  console.log(img1);
 
   return (
     <main className="appuno">
@@ -43,8 +48,7 @@ const crearPreguntas = () => {
           name="cambioCheck"
           type="radio"
           value="A"
-          onChange={handleChange}
-          onClick={handleChange}
+          onClick={respuestaCorrecta}
         />
       </div>
 
@@ -54,8 +58,7 @@ const crearPreguntas = () => {
           name="cambioCheck"
           type="radio"
           value="B"
-          onChange={handleChange}
-          onClick={handleChange}
+          onClick={respuestaCorrecta}
         />
       </div>
 
@@ -65,8 +68,7 @@ const crearPreguntas = () => {
           name="cambioCheck"
           type="radio"
           value="C"
-          onChange={handleChange}
-          onClick={handleChange}
+          onClick={respuestaCorrecta}
         />
       </div>
 
@@ -76,8 +78,7 @@ const crearPreguntas = () => {
           name="cambioCheck"
           type="radio"
           value="D"
-          onChange={handleChange}
-          onClick={handleChange}
+          onClick={respuestaCorrecta}
         />
       </div>
 

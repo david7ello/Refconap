@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import "./assets/global.css"
 import { Link } from 'react-router-dom'
 
+
 export const SeleccionarCurso = () => {
   const [data, setData] = useState()
   const [isLoading, setIsLoading] = useState(true)
@@ -28,6 +29,9 @@ export const SeleccionarCurso = () => {
     );
   }
   return (
+
+
+
     <div className='app'>
         <div>
             <h1>
@@ -47,6 +51,7 @@ export const SeleccionarCurso = () => {
                 <Link to={"/resolverEjercicio2"}>
                 <button>Empezar cuestionario</button>
                 </Link>
+                <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>
         </div>
         
     </div>

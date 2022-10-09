@@ -66,6 +66,7 @@ const NombreActividad = () => {
         <Link to={"/altaEjercicioDos"}>
           <button>Crear Cuestionario</button>
         </Link>
+        <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>
       </div>
     </div>
   );
