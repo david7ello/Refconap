@@ -12,9 +12,12 @@
     min-height: 100vh;
   }
   
-  .centrado {
-    margin-left: auto; 
-    margin-right: auto;
+  .centrado { 
+    max-width: 650px;
+    min-width: 450px;
+    height: min-content;
+    min-height: 200px;
+    justify-content: space-evenly;
   }
 
 
@@ -43,7 +46,7 @@
     justify-content: space-evenly;
   }
 
-
+ 
 
   /* PREGUNTAS */
   .lado-izquierdo {
