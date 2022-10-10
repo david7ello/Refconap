@@ -41,25 +41,25 @@ include("head.php")
 					<div class="row">
 						<div class="form-group col-md-12 text-left">
 							<label for="inputEmail4">Nombre del curso</label>
-							<input type="text" class="form-control" id="nombre_curso" name="nombre_curso" placeholder="Ingresa el nombre del curso" value="">
+							<input type="text" class="form-control" id="nombre_curso" name="nombre_curso" placeholder="Ingresa el nombre del curso" required value="">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Fecha de inicio</label>
-							<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="" value="">
+							<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?> value="<?php $hoy=date("Y-m-d"); echo $hoy;?>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Fecha de término</label>
-							<input type="date" class="form-control" id="fecha_termino" name="fecha_termino" placeholder="" value="">
+							<input type="date" class="form-control" id="fecha_termino" name="fecha_termino" placeholder="" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-md-2">
 							<label for="inputEmail4">Duración</label>
-							<input type="Integer" class="form-control" id="duracion_curso" name="duracion_curso" placeholder="¿? horas" value="">
+							<input type="number" class="form-control" id="duracion_curso" name="duracion_curso" placeholder="8 minimo" min="8" max="240" required value="">
 						</div>
 
 						<div class="form-group col-md-6">
@@ -140,12 +140,12 @@ include("head.php")
         <td>" . $fila["fecha_inicio"] . "</td>
         <td>" . $fila["fecha_final"] . "</td>
         <td>" . $fila["duracion"] . "</td>
-        <td>" . getInstructor($fila["id"]) . "</td>
+        <td>" . getInstructor($fila["id"]) ."</td>
         <td>" . "<form method='POST'>
 		<a href='editarCurso.php?id_curso=" . $fila["id"] . "'><button type='button' class='btn btn-default boton_color'>Editar</button></a>
 		<a href='crudCursos.php?id_eliminar_curso=" . $fila["id"] . "'><button type='button' class='btn btn-default boton_color'>Eliminar</button></a>
-	</form>" . "</td>
-    </tr>";
+		</form>" . "</td>
+    	</tr>";
 				}
 				?>
 			</tbody>

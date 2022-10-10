@@ -1,6 +1,5 @@
 <?php
 
-
 include("valida_pagina.php");
 
 $actvandoBtn = ''; //variable para manejar las opciones del botón
@@ -21,13 +20,13 @@ if (isset($_POST["btn_registrarCurso"])) {
     $duracionValidate = false;
     $instructorValidate = false;
 
-    // Validar nombre
-    if (!preg_match("/^([a-zA-Z' ]+)$/", $nombreCurso)) {
+    //Validar nombre
+   if (!preg_match("|^[a-zñáéíóúA-ZÑÁÉÍÓÚ]+(\s*[a-zñáéíóúA-ZÑÁÉÍÓÚ]*)*[a-zñáéíóúA-ZÑÁÉÍÓÚ]+$|", $nombreCurso)) {
         $nameValidate = false;
-        echo "El nombre no está en un formato valido";
-    } else {
+        //echo "verificar nombre";
+   } else {
         $nameValidate = true;
-        echo "El nombre está en un formato valido";
+        //echo "El nombre está en un formato valido";
     }
 
     // Validar fecha inicio
@@ -89,7 +88,7 @@ switch ($actvandoBtn) {
     case "Registrar":
         if ($nameValidate && $fechaInicioValidate && $fechaTerminoValidate && $duracionValidate && $instructorValidate) {
 
-            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion,instructor) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', '$instructorAsignado')";
+            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion,instructor) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', $instructorAsignado)";
             $result = mysqli_query($link, $query); //almacenamos en nuestra variable el resultado de la consulta
 
             if ($result) {
@@ -101,36 +100,31 @@ switch ($actvandoBtn) {
         } else {
             $errorMessage = '';
 
-
-            if ($emailValidate == '' and $nameValidate == '' and $lastNameValidate == '' and $numberValidate == '' and $passwordValidate == '' and $dateValidate == '') {
+            if ($nameValidate == '' and $fechaInicioValidate == '' and $fechaTerminoValidate == '' and $duracionValidate == '' and $instructorValidate == '') {
                 $errorMessage  = 'Todos los campos son requeridos';
-            }
-
-            if (!$emailValidate) {
-                $errorMessage = "El correo no está en un formato valido";
             }
 
             if (!$nameValidate) {
                 $errorMessage = "El nombre no está en un formato valido";
             }
 
-            if (!$lastNameValidate) {
-                $errorMessage = "El apellido no está en un formato valido";
+            if (!$fechaInicioValidate) {
+                $errorMessage = "La fecha de inicio es incorrecta";
             }
 
-            if (!$numberValidate) {
-                $errorMessage = "El número no está en un formato valido";
+            if (!$fechaTerminoValidate) {
+                $errorMessage = "La fecha de termino es incorrecta";
             }
 
-            if (!$passwordValidate) {
-                $errorMessage = "La contraseña no está en un formato valido";
+            if (!$duracionValidate) {
+                $errorMessage = "La duración no debe de ser menor a 8 horas";
             }
 
-            if (!$dateValidate) {
-                $errorMessage = "La fecha no está en un formato valido";
-            }
+            //if (!$instructorValidate) {
+                //$errorMessage = "Verificar instructor";
+            //}
 
-            header("Location: AgregarAdm.php?error=$errorMessage");
+            header("Location: regCursos.php?error=$errorMessage");
 
         }
 

@@ -1,22 +1,20 @@
 <?php
-include("valida_pagina.php")
+include("valida_pagina.php");
 
-//$queryAdmin = "SELECT * FROM usuarios";
-//$administradores =  mysqli_query($link, $queryAdmin);
-
-
+$queryAdmin = "SELECT * FROM usuarios";
+$administradores =  mysqli_query($link, $queryAdmin);
 ?>	
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <?php 
-include ("head.php")
+include ("head.php");
 ?>
 
 <body>
 	<?php 
-	include("menu.php")
+	include("menu.php");
 	?>
 	<div align="center">
 		<div class="div_container" style="width: 700px;">
@@ -27,8 +25,10 @@ include ("head.php")
 				<form action="InsertarAdm.php" method="post" enctype="multipart/form-data">
 					<div class="row">
 						<div class="form-group col-md-9 text-left">
-							<label for="inputEmail4">Nombre de Usuario</label>
+							<label for="inputEmail4">Nombre</label>
 							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" value="">
+							<label for="inputEmail4">Apellidos</label>
+							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" value="">
 						</div>
 						<div class="form-group col-md-3 text-left">
 							<label for="inputEmail4">Teléfono</label>
@@ -50,7 +50,7 @@ include ("head.php")
 						<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Correo</label>
-							<input type="mail" class="form-control" id="correo" name="correo" placeholder="" value="">
+							<input type="email" class="form-control" id="correo" name="correo" placeholder="" value="">
 						</div>
 
 					<div class="row">

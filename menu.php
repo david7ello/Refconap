@@ -28,31 +28,25 @@ if ($_SESSION['tipo'] == 'ADMIN') {
                                 <ul class="dropdown-menu">
                                     <li><a href="AgregarAdm.php">Alta Administrador </a></li>
                                     <li><a href="modificarAdm.php">Modificar Administrador</a></li>
-                                    <li><a href="#">Eliminar Administrador</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">INSTRUCTOR<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Alta Instructor</a></li>
                                     <li><a href="#">Modificar Instructor</a></li>
-                                    <li><a href="#">Eliminar Instructor </a></li>
-                                    <li><a href="#">Consultar Avance Instructor</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">PARTICIPANTE<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Agregar Participante</a></li>
                                     <li><a href="#">Modificar Participante</a></li>
-                                    <li><a href="#">Eliminar Participante</a></li>
-                                    <li><a href="#">Consultar Participante</a></li>
                                 </ul>
                             </li>
 
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CURSOS<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="regCursos.php">Registro de cursos</a></li>
-                                    <li><a href="#">Próximos cursos</a></li>
-
+                                    
                                 </ul>
                             </li>
 
@@ -66,7 +60,7 @@ if ($_SESSION['tipo'] == 'ADMIN') {
                             </svg></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="cambiarContrasena.php">Cambiar Contrase&ntilde;a Admin.</a></li>
-                                    <li><a href="cambiarContrasenaDocente.php">Restablecer Contrase&ntilde;a a Empleado</a></li>
+                                    
                                 </ul>
                             </li>
                             <li class=""><a href="salida.php"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" stroke="1.5" fill=#597e8d class="bi bi-power" viewBox="0 0 16 16">
