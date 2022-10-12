@@ -17,15 +17,7 @@ const NombreActividad = () => {
         setIsLoading(false)
       } );
   }, []);
-  console.log(data)
- 
-  
-
-  // const postPreguntas=(e)=>{
-  //   e.preventDefault();
-  //   axios.post()
-  // }
-  
+  console.log(data) 
 
 
   const handleChange = (e) => {
@@ -40,7 +32,7 @@ const NombreActividad = () => {
   if (isLoading === true) {
     // ⬅️ si está cargando, mostramos un texto que lo indique
     return (
-      <div>
+      <div className="app">
         <h1>Cargando...</h1>
       </div>
     );

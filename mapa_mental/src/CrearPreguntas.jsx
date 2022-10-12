@@ -10,7 +10,7 @@ const crearPreguntas = () => {
     img3: null,
     img4: null,
   });
-  console.log(arrPregunta.respuestaCorrecta);
+  console.log(arrPregunta);
   const handleSave = () => {
     fetch("http://localhost:8000/api.php", {
       method: "POST",

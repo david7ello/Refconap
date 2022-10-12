@@ -31,7 +31,7 @@ switch ($method) {
     break;
   case 'POST':
     $post = file_get_contents('php://input');
-    $sql = "UPDATE cursos SET cuestionario= '$post' WHERE nombre='taller'";
+    $sql = "UPDATE cursos SET cuestionario= '$post' WHERE nombre='inglés'";
     break;
 
     //   $email = $_POST["email"];
