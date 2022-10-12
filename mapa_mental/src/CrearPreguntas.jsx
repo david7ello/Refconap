@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./assets/global.css";
-
-
 const crearPreguntas = () => {
   const [cambioCheck, setCambioCheck] = useState();
   const [pregunta, setPregunta] = useState("");
@@ -10,12 +8,46 @@ const crearPreguntas = () => {
   const [img3, setImg3] = useState();
   const [img4, setImg4] = useState();
 
-  const handleChange = (e) => {
-    setPregunta(e.target.value);
+  const [arrPregunta, setArrPregunta] = useState({
+    pregunta: "",
+    respuestaCorrecta: "",
+    img1: null,
+    img2: null,
+    img3: null,
+    img4: null,
+  });
+
+  const handleSave = () => {
+    // axios.post("http://localhost:8000/api.php", arrPregunta).then(() => {
+    //   console.log("bien hecho");
+    // });
+    fetch("http://localhost:8000/api.php", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(arrPregunta),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
-  const respuestaCorrecta=(e)=>{
+  const handleChange = (e) => {
+    e.persist;
+    setArrPregunta((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const respuestaCorrecta = (e) => {
     setCambioCheck(e.target.value);
+    setArrPregunta((prev) => ({
+      ...prev,
+      respuestaCorrecta: e.target.value,
+    }));
   };
 
   const cargarImg1 = (e) => {
@@ -38,9 +70,9 @@ const crearPreguntas = () => {
   return (
     <main className="appuno">
       <h1>Escribe tu pregunta</h1>
-      <input type="text" onChange={handleChange} />
+      <input name="pregunta" type="text" onChange={handleChange} />
       <h1>Coloca tus imagenes</h1>
-      <h1>Respuesta correcta es {cambioCheck}</h1>
+      <h1>Respuesta correcta es {arrPregunta.respuestaCorrecta}</h1>
 
       <div className="inputs">
         <input type="file" accept=".jpg" onChange={cargarImg1} />
@@ -53,7 +85,7 @@ const crearPreguntas = () => {
       </div>
 
       <div className="inputs">
-        <input type="file" accept=".jpg"  onChange={cargarImg2}/>
+        <input type="file" accept=".jpg" onChange={cargarImg2} />
         <input
           name="cambioCheck"
           type="radio"
@@ -63,7 +95,7 @@ const crearPreguntas = () => {
       </div>
 
       <div className="inputs">
-        <input type="file" accept=".jpg" onChange={cargarImg3}/>
+        <input type="file" accept=".jpg" onChange={cargarImg3} />
         <input
           name="cambioCheck"
           type="radio"
@@ -73,7 +105,7 @@ const crearPreguntas = () => {
       </div>
 
       <div className="inputs">
-        <input type="file" accept=".jpg" onChange={cargarImg4}/>
+        <input type="file" accept=".jpg" onChange={cargarImg4} />
         <input
           name="cambioCheck"
           type="radio"
@@ -84,7 +116,7 @@ const crearPreguntas = () => {
 
       <div className="siguiente">
         <button>Siguiente pregunta</button>
-        <button>Guardar ejercicio</button>
+        <button onClick={handleSave}>Guardar ejercicio</button>
       </div>
     </main>
   );
