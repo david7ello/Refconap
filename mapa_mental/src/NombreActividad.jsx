@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./assets/global.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 
 const NombreActividad = () => {
   const [data, setData] = useState();
@@ -17,14 +17,12 @@ const NombreActividad = () => {
         setIsLoading(false)
       } );
   }, []);
-  console.log(data) 
-
 
   const handleChange = (e) => {
     e.preventDefault()
     setNombreAct(e.target.value);
   };
-
+console.log(nombreAct,cambioGrupo)
   const selectGrupp = (e) => {
     setCambioGrupo(e.target.value);
   };
@@ -55,7 +53,7 @@ const NombreActividad = () => {
           })}
         </select>
         <br />
-        <Link to={"/altaEjercicioDos"}>
+        <Link to={"/altaEjercicioDos/:nombreAct/:cambioGrupo"}>
           <button>Crear Cuestionario</button>
         </Link>
         <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./assets/global.css";
+import { useParams } from "react-router-dom";
 const crearPreguntas = () => {
+  const nombres= useParams();
+  console.log(nombres)
   
   const [arrPregunta, setArrPregunta] = useState({
+    actividad:"",
+    curso:"",
     pregunta: "",
     correcta: "",
     img1: null,
@@ -10,7 +15,7 @@ const crearPreguntas = () => {
     img3: null,
     img4: null,
   });
-  console.log(arrPregunta);
+  
   const handleSave = () => {
     fetch("http://localhost:8000/api.php", {
       method: "POST",
@@ -69,10 +74,10 @@ const crearPreguntas = () => {
 
   return (
     <main className="appuno">
-      <h1>Escribe tu pregunta</h1>
+      <h2>Escribe tu pregunta</h2>
       <input name="pregunta" type="text" onChange={handleChange} />
-      <h1>Coloca tus imagenes</h1>
-      <h1>Respuesta correcta es {arrPregunta.respuestaCorrecta}</h1>
+      <h2>Coloca tus imagenes</h2>
+      <h2>Respuesta correcta es {arrPregunta.correcta}</h2>
 
       <div className="inputs">
         <input type="file" accept=".jpg" onChange={cargarImg1} />
