@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import "./assets/global.css";
 const crearPreguntas = () => {
-  const [cambioCheck, setCambioCheck] = useState();
-  const [pregunta, setPregunta] = useState("");
-  const [img1, setImg1] = useState();
-  const [img2, setImg2] = useState();
-  const [img3, setImg3] = useState();
-  const [img4, setImg4] = useState();
-
+  
   const [arrPregunta, setArrPregunta] = useState({
     pregunta: "",
-    respuestaCorrecta: "",
+    correcta: "",
     img1: null,
     img2: null,
     img3: null,
     img4: null,
   });
-
+  console.log(arrPregunta.respuestaCorrecta);
   const handleSave = () => {
     fetch("http://localhost:8000/api.php", {
       method: "POST",
@@ -40,29 +34,38 @@ const crearPreguntas = () => {
   };
 
   const respuestaCorrecta = (e) => {
-    setCambioCheck(e.target.value);
     setArrPregunta((prev) => ({
       ...prev,
-      respuestaCorrecta: e.target.value,
+      correcta: e.target.value,
     }));
   };
 
   const cargarImg1 = (e) => {
-    setImg1(e.target.files);
+    setArrPregunta((prev) => ({
+      ...prev,
+      img1: e.target.files,
+    }));
   };
 
   const cargarImg2 = (e) => {
-    setImg2(e.target.files);
+    setArrPregunta((prev) => ({
+      ...prev,
+      img2: e.target.files,
+    }));
   };
 
   const cargarImg3 = (e) => {
-    setImg3(e.target.files);
+    setArrPregunta((prev) => ({
+      ...prev,
+      img3: e.target.files,
+    }));
   };
   const cargarImg4 = (e) => {
-    setImg4(e.target.files);
+    setArrPregunta((prev) => ({
+      ...prev,
+      img4: e.target.files,
+    }));
   };
-
-  console.log(img1);
 
   return (
     <main className="appuno">
