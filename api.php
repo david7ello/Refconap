@@ -14,7 +14,7 @@ $password = "";
 // Nombre de la base de datos
 $dbname = "refconap";
 
-$con = mysqli_connect($host, $user, $password,$dbname);
+$con = mysqli_connect($host, $user, $password, $dbname);
 
 $method = $_SERVER['REQUEST_METHOD'];
 // $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -26,11 +26,14 @@ if (!$con) {
 
 
 switch ($method) {
-    case 'GET':
-      $sql = "select * from cursos"; 
-      break;
-    // case 'POST':
-    //   $name = $_POST["name"];
+  case 'GET':
+    $sql = "select * from cursos";
+    break;
+  case 'POST':
+    $post = file_get_contents('php://input');
+    $sql = "UPDATE cursos SET cuestionario= '$post' WHERE nombre='curso1'";
+    break;
+
     //   $email = $_POST["email"];
     //   $country = $_POST["country"];
     //   $city = $_POST["city"];
@@ -41,7 +44,7 @@ switch ($method) {
 }
 
 // run SQL statement
-$result = mysqli_query($con,$sql);
+$result = mysqli_query($con, $sql);
 
 // die if SQL statement failed
 if (!$result) {
@@ -50,16 +53,16 @@ if (!$result) {
 }
 
 if ($method == 'GET') {
-    echo '[';
-    for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
-      echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));
-    }
-    echo ']';
-  } elseif ($method == 'POST') {
-    echo json_encode($result);
-  } else {
-    echo mysqli_affected_rows($con);
+  echo '[';
+  for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+    echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
   }
-  
+  echo ']';
+} elseif ($method == 'POST') {
+  echo json_encode($result);
+} else {
+  echo mysqli_affected_rows($con);
+}
+
 
 $con->close();
