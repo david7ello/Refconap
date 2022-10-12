@@ -37,7 +37,7 @@ include ("head.php");
        </div>
    </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="ejerUno.js"></script>
 
 </body>
