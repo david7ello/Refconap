@@ -13,8 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
     <!--link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" /-->
-    <link rel="stylesheet" type="text/css" href="font-awesome/css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" /
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/calendar.css" />-->
     <link rel="stylesheet" type="text/css" href="css/dataTables.css">
     <link rel="stylesheet" type="text/css" href="css/estiloGeneral.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">

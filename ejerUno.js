@@ -1,13 +1,13 @@
-const list_items = document.querySelectorAll('.list-item');
+
+const lista_items = document.querySelectorAll('.list-item');
 const lists = document.querySelectorAll('.list');
 
 let draggedItem =null;
 
-for (let i=0; i<list_items.length; i++) {
-    const item = list_items[i];
+for (let i=0; i<lista_items.length; i++) {
+    const item = lista_items[i];
 
     item.addEventListener('dragstart', function () {
-        console.log('dragstart');
         draggedItem = item;
         setTimeout(function (){
             item.style.display = 'none';
@@ -16,7 +16,6 @@ for (let i=0; i<list_items.length; i++) {
     });
 
     item.addEventListener('dragend', function() {
-        console.log('dragend');
         setTimeout(function (){
             draggedItem.style.display = 'block';
             draggedItem = null;
@@ -24,10 +23,24 @@ for (let i=0; i<list_items.length; i++) {
     })
 
 
-    for (let j=0; j<lists.lengt; j++) {
+    for (let j = 0; j < lists.lengt; j++) {
         const list = lists[j]; 
+
+        list.addEventListener('dragover', function (e){
+            e.preventDefault();
+        });
+
+        list.addEventListener('dragenter', function (e){
+            e.preventDefault();
+        });
+
+        list.addEventListener('drop', function (e){
+            console.log('drop');
+            this.append(draggedItem);
+        });
+            
+        }
     }
 
 
 
-}
