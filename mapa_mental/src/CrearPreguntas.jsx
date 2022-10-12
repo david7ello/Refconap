@@ -18,10 +18,7 @@ const crearPreguntas = () => {
   });
 
   const handleSave = () => {
-    // axios.post("http://localhost:8000/api.php", arrPregunta).then(() => {
-    //   console.log("bien hecho");
-    // });
-    fetch("http://localhost:8000/api.php", {
+    fetch("httpl://localhost:8000/api.php", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

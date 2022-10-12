@@ -23,7 +23,7 @@ const PreguntasSelect = () => {
         } );
     }, []);
     
-
+  console.log(data)
 
     function siguientePregunta(isCorrect,e){
         //añadir puntos
