@@ -18,7 +18,7 @@ const crearPreguntas = () => {
   });
 
   const handleSave = () => {
-    fetch("httpl://localhost:8000/api.php", {
+    fetch("http://localhost:8000/api.php", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
