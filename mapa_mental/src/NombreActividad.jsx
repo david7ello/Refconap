@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./assets/global.css";
 import { Link } from "react-router-dom";
-
+import "./assets/global.css";
 
 const NombreActividad = () => {
   const [data, setData] = useState();
@@ -12,17 +11,17 @@ const NombreActividad = () => {
   useEffect(() => {
     fetch("http://localhost:8000/api.php")
       .then((response) => response.json())
-      .then((data) =>{
-        setData(data)
-        setIsLoading(false)
-      } );
+      .then((data) => {
+        setData(data);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleChange = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setNombreAct(e.target.value);
   };
-console.log(nombreAct,cambioGrupo)
+  console.log(nombreAct, cambioGrupo);
   const selectGrupp = (e) => {
     setCambioGrupo(e.target.value);
   };
@@ -53,10 +52,18 @@ console.log(nombreAct,cambioGrupo)
           })}
         </select>
         <br />
-        <Link to={"/altaEjercicioDos/:nombreAct/:cambioGrupo"}>
+        <Link
+          to={"/altaEjercicioDos/:nombreAct/:cambioGrupo"}
+          state={{
+            nombre: nombreAct,
+            grupo: cambioGrupo,
+          }}
+        >
           <button>Crear Cuestionario</button>
         </Link>
-        <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>
+        <a href="http://localhost:8000/ejercicioDos.php" className="buttons">
+          Regresar
+        </a>
       </div>
     </div>
   );

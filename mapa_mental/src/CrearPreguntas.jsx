@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./assets/global.css";
-import { useParams } from "react-router-dom";
 const crearPreguntas = () => {
-  const nombres= useParams();
-  console.log(nombres)
-  
+  const { nombre, grupo } = useLocation().state;
+  console.log(nombre);
+  console.log(grupo);
+
   const [arrPregunta, setArrPregunta] = useState({
-    actividad:"",
-    curso:"",
+    actividad: "",
+    curso: "",
     pregunta: "",
     correcta: "",
     img1: null,
@@ -15,7 +16,7 @@ const crearPreguntas = () => {
     img3: null,
     img4: null,
   });
-  
+
   const handleSave = () => {
     fetch("http://localhost:8000/api.php", {
       method: "POST",
