@@ -1,24 +1,41 @@
 <?PHP
 session_start();
 if (!isset($link) or !$link) {
-    include("db.php");
-    $link = Conectarse_general();
+	include("db.php");
+	$link = Conectarse_general();
 }
-
-if(($_POST["correo"]) and ($_POST["password"]))
-{
-	if (isset($_POST["correo"]) and isset($_POST["password"])) 
-	{
+$tipo = 0;
+if (($_POST["correo"]) and ($_POST["password"])) {
+	if (isset($_POST["correo"]) and isset($_POST["password"])) {
 		$correo = $_POST['correo'];
 		$password = $_POST['password'];
 		$tipo = $_POST['tipo'];
-		// Variables para el Captcha
-		$ip=$_SERVER['REMOTE_ADDR']; 
-		$captcha=$_POST['g-recaptcha-response'];
-		$secretkey="6LeedbUhAAAAAPCh4Hw8DN3nupJsvzRYhulbQLlQ";
-		$respuesta=file_get_contents("URL: https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip=$ip");
-		$atributos=json_decode($respuesta,TRUE);
 
+		if ($_POST['tipo'] === "A") {
+			$tipo = 1;
+		}
+		// Variables para el Captcha
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$captcha = $_POST['g-recaptcha-response'];
+		$secretKey = "6LeedbUhAAAAAPCh4Hw8DN3nupJsvzRYhulbQLlQ";
+		// $respuesta=file_get_contents("URL: https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip=$ip");
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_URL => 'https://www.google.com/recaptcha/api/siteverify',
+			CURLOPT_POST => 1,
+			CURLOPT_POSTFIELDS => array(
+				'secret' => $secretKey,
+				'response' => $captcha
+			)
+		));
+		$response = curl_exec($curl);
+		curl_close($curl);
+		if (strpos($response, '"success": true') !== FALSE) {
+			$atributos = json_decode($respuesta, TRUE);
+		} else {
+			echo "<h3>Error</h3>";
+		}
 	}
 }
 
@@ -46,18 +63,18 @@ if ($password == "" or $correo == "" or $captcha == "") {
 	//Regresa al LOGIN
 	header("Location:index.php");
 } else {
-	
-	// ! Validaccion para el acceso del ADMINISTRADOR
-	if($tipo == 'A'){
 
-		$sql = "SELECT * FROM usuarios WHERE correo = '$correo' and password = '$password' and tipo = 'ADMIN' ";
+	// ! Validaccion para el acceso del ADMINISTRADOR
+	if ($tipo == 1) {
+
+		$sql = "SELECT * FROM usuarios WHERE correo = '$correo' and password = '$password' and roles = $tipo ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
-		
+
 
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
-			$_SESSION['tipo'] = $row["tipo"];
+			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $nombre;
 			$_SESSION['password'] = $password;
@@ -68,12 +85,12 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		}
 	}
 	// ! Validaccion para el acceso del INSTRUCTOR 
-	if($tipo == 'I'){
+	if ($tipo == 'I') {
 
 		$sql = "SELECT * FROM instructores WHERE correo = '$correo' and password = '$password' and tipo = 'INST' ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
-		
+
 
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
@@ -88,12 +105,12 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		}
 	}
 	// ! Validaccion para el acceso del PARTICIPANTE
-	if($tipo == 'P'){
+	if ($tipo == 'P') {
 
 		$sql = "SELECT * FROM participantes WHERE correo = '$correo' and password = '$password' and tipo ='PART' ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
-		
+
 
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
@@ -108,4 +125,3 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		}
 	}
 }
-?>
