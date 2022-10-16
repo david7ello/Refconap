@@ -48,7 +48,7 @@ export const SeleccionarCurso = () => {
           })}
         </select>
                 <br />
-                <Link to={"/resolverEjercicio2"}>
+                <Link to={"/resolverEjercicio2"} state={{}}>
                 <button>Empezar cuestionario</button>
                 </Link>
                 <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>

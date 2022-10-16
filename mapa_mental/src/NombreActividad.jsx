@@ -8,6 +8,8 @@ const NombreActividad = () => {
   const [nombreAct, setNombreAct] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+ console.log(data)
+
   useEffect(() => {
     fetch("http://localhost:8000/api.php")
       .then((response) => response.json())
