@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import "./assets/global.css";
 import preguntas from './preguntas';
 import { Link } from 'react-router-dom';
+import PdfEjerDos from './PdfEjerDos';
 
 
 const PreguntasSelect = () => {
@@ -56,9 +57,9 @@ const PreguntasSelect = () => {
           <div className='juego-terminado'>
             <span>Obtuviste {puntuacion} de {preguntas.length}</span>
             <button onClick={()=>window.location.href="/"}>Volver a jugar</button>
-            <Link to={"/pdfEjercicioDos"}>
-            <button>Generar PDF</button>
-            </Link>
+            
+            <PdfEjerDos/>
+            
             <button onClick={()=>{
               setisFinished(false);
               setMostrarCorrectas(true);
