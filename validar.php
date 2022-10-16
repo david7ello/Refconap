@@ -85,9 +85,9 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		}
 	}
 	// ! Validaccion para el acceso del INSTRUCTOR 
-	if ($tipo == 'I') {
+	if ($tipo == 2) {
 
-		$sql = "SELECT * FROM instructores WHERE correo = '$correo' and password = '$password' and tipo = 'INST' ";
+		$sql = "SELECT * FROM usuarios WHERE correo = '$correo' and password = '$password' and roles = $tipo ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
 
@@ -105,7 +105,7 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		}
 	}
 	// ! Validaccion para el acceso del PARTICIPANTE
-	if ($tipo == 'P') {
+	if ($tipo == 3) {
 
 		$sql = "SELECT * FROM participantes WHERE correo = '$correo' and password = '$password' and tipo ='PART' ";
 		$res = mysqli_query($link, $sql);
