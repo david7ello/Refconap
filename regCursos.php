@@ -4,7 +4,7 @@ include("valida_pagina.php"); //Conexión
 $queryCursos = "SELECT * FROM cursos";
 $cursosBD =  mysqli_query($link, $queryCursos); //enviamos nuestra conexión
 
-$queryInstructores = "SELECT * FROM instructores"; //traemos la información de nuestra tabla
+$queryInstructores = "SELECT `id_user`, `nombre`, `apellidos` FROM `usuarios` WHERE roles=2"; //traemos la información de nuestra tabla
 $instructores = mysqli_query($link, $queryInstructores);
 
 
@@ -92,7 +92,7 @@ include("head.php")
 				</form>
 
 				<?PHP
-				if (isset($_GET["success"]) or $_GET["success"] != "") {
+				if (empty($_GET["success"]) ) {} else{
 					echo '<br/>';
 					echo '<div class="form-group has-feedback" style="width:450px;">';
 					echo '<div class="alert alert-success">';
@@ -104,7 +104,7 @@ include("head.php")
 				?>
 
 				<?PHP
-				if (isset($_GET["error"]) or $_GET["error"] != "") {
+				if (empty($_GET["error"]) ){}else {
 					echo '<br/>';
 					echo '<div class="form-group has-feedback" style="width:450px;">';
 					echo '<div class="alert alert-danger">';
@@ -140,7 +140,7 @@ include("head.php")
         <td>" . $fila["fecha_inicio"] . "</td>
         <td>" . $fila["fecha_final"] . "</td>
         <td>" . $fila["duracion"] . "</td>
-        <td>" . getInstructor($fila["id"]) ."</td>
+        <td>" . getInstructor($fila["instructor"]) ."</td>
         <td>" . "<form method='POST'>
 		<a href='editarCurso.php?id_curso=" . $fila["id"] . "'><button type='button' class='btn btn-default boton_color'>Editar</button></a>
 		<a href='crudCursos.php?id_eliminar_curso=" . $fila["id"] . "'><button type='button' class='btn btn-default boton_color'>Eliminar</button></a>

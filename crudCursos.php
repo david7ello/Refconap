@@ -155,7 +155,7 @@ switch ($actvandoBtn) {
         //     echo '<script language= "javascript"> alert ("No son correctos"); </script>';
         // }
 
-        $query = "UPDATE cursos SET nombre = '$nombreCurso', fecha_inicio = '$fechaInicio', fecha_final = '$fechaTermino', duracion = '$duracionCurso' WHERE id = $id_curso";
+        $query = "UPDATE cursos SET nombre = '$nombreCurso', fecha_inicio = '$fechaInicio', fecha_final = '$fechaTermino', duracion = '$duracionCurso', instructor='$instructorAsignado' WHERE id = $id_curso";
 
         $result = mysqli_query($link, $query);
 

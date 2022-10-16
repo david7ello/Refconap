@@ -14,7 +14,7 @@ $instructor = $curso['instructor'];
 $id_curso = $_GET['id_curso'];
 
 
-$queryInstructores = "SELECT * FROM instructores"; //traemos la información de nuestra tabla
+$queryInstructores = "SELECT `id_user`, `nombre`, `apellidos` FROM `usuarios` WHERE roles=2";
 $instructores = mysqli_query($link, $queryInstructores);
 
 
