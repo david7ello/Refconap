@@ -25,7 +25,8 @@ const PreguntasSelect = () => {
         } );
     }, []);
     
-  console.log(data)
+    const respuestaUno = preguntas[0].opciones[0].textoRespuesta
+    console.log(respuestaUno)
 
     function siguientePregunta(isCorrect,e){
         //añadir puntos
@@ -57,8 +58,8 @@ const PreguntasSelect = () => {
           <div className='juego-terminado'>
             <span>Obtuviste {puntuacion} de {preguntas.length}</span>
             <button onClick={()=>window.location.href="/"}>Volver a jugar</button>
-            
-            <PdfEjerDos/>
+
+            <PdfEjerDos preguntas={preguntas}/>
             
             <button onClick={()=>{
               setisFinished(false);
