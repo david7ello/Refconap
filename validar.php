@@ -53,9 +53,6 @@ if (!$emailValidate) {
 	header("Location:index.php");
 }
 
-
-
-
 //Valida si hay algun campo en blanco se regresa al LOGIN
 if ($password == "" or $correo == "" or $captcha == "") {
 	//error para un campo en blanco: usuario o contrasena.
@@ -70,7 +67,6 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		$sql = "SELECT * FROM usuarios WHERE correo = '$correo' and password = '$password' and roles = $tipo ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
-
 
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
@@ -91,10 +87,9 @@ if ($password == "" or $correo == "" or $captcha == "") {
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
 
-
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
-			$_SESSION['tipo'] = $row["tipo"];
+			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $nombre;
 			$_SESSION['password'] = $password;
@@ -107,14 +102,14 @@ if ($password == "" or $correo == "" or $captcha == "") {
 	// ! Validaccion para el acceso del PARTICIPANTE
 	if ($tipo == 3) {
 
-		$sql = "SELECT * FROM participantes WHERE correo = '$correo' and password = '$password' and tipo ='PART' ";
+		$sql = "SELECT * FROM usuarios WHERE correo = '$correo' and password = '$password' and roles = $tipo ";
 		$res = mysqli_query($link, $sql);
 		$row = mysqli_fetch_array($res);
 
 
 		if ($row) {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
-			$_SESSION['tipo'] = 'PART';
+			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $nombre;
 			$_SESSION['password'] = $password;
