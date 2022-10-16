@@ -3,12 +3,11 @@ import { useLocation } from "react-router-dom";
 import "./assets/global.css";
 const crearPreguntas = () => {
   const { nombre, grupo } = useLocation().state;
-  console.log(nombre);
-  console.log(grupo);
+
 
   const [arrPregunta, setArrPregunta] = useState({
-    actividad: "",
-    curso: "",
+    actividad: nombre,
+    curso: grupo,
     pregunta: "",
     correcta: "",
     img1: null,
@@ -75,6 +74,7 @@ const crearPreguntas = () => {
 
   return (
     <main className="appuno">
+      <h2>{nombre}</h2>
       <h2>Escribe tu pregunta</h2>
       <input name="pregunta" type="text" onChange={handleChange} />
       <h2>Coloca tus imagenes</h2>

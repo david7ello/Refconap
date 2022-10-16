@@ -13,7 +13,7 @@ const AppRouter = () => {
     <div>
         <Routes>
         <Route path='/' element={<Home/>}/>
-            <Route path='/altaEjercicioDos/:nombreAct/:cambioGrupo' element={<CrearPreguntas/>}/>
+            <Route path='/altaEjercicioDos' element={<CrearPreguntas/>}/>
             <Route path='/resolverEjercicio2' element={<PreguntasSelect/>}/>
             <Route path='/crearActividad' element={<NombreActividad/>}/>
             <Route path='/seleccionCurso' element={<SeleccionarCurso/>}/>

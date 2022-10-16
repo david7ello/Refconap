@@ -53,7 +53,7 @@ const NombreActividad = () => {
         </select>
         <br />
         <Link
-          to={"/altaEjercicioDos/:nombreAct/:cambioGrupo"}
+          to={"/altaEjercicioDos"}
           state={{
             nombre: nombreAct,
             grupo: cambioGrupo,
