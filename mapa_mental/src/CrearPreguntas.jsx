@@ -16,7 +16,23 @@ const crearPreguntas = () => {
     img4: null,
   });
 
+  
+
+
   const handleSave = () => {
+    var data = new FormData ();
+    data.append("file1",arrPregunta.img1);
+    data.append("file2",arrPregunta.img2);
+    data.append("file3",arrPregunta.img3);
+    data.append("file4",arrPregunta.img4);
+
+
+    fetch("http://localhost:8000/imgApi.php",{
+      method:"POST",
+      body:data,
+    })
+
+
     fetch("http://localhost:8000/api.php", {
       method: "POST",
       headers: {
@@ -48,27 +64,27 @@ const crearPreguntas = () => {
   const cargarImg1 = (e) => {
     setArrPregunta((prev) => ({
       ...prev,
-      img1: e.target.files,
+      img1: e.target.files[0],
     }));
   };
 
   const cargarImg2 = (e) => {
     setArrPregunta((prev) => ({
       ...prev,
-      img2: e.target.files,
+      img2: e.target.files[0],
     }));
   };
 
   const cargarImg3 = (e) => {
     setArrPregunta((prev) => ({
       ...prev,
-      img3: e.target.files,
+      img3: e.target.files[0],
     }));
   };
   const cargarImg4 = (e) => {
     setArrPregunta((prev) => ({
       ...prev,
-      img4: e.target.files,
+      img4: e.target.files[0],
     }));
   };
 

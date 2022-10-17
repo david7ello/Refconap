@@ -30,8 +30,21 @@ switch ($method) {
     $sql = "select * from cursos";
     break;
   case 'POST':
-    $post = file_get_contents('php://input');
-    $sql = "UPDATE cursos SET cuestionario= '$post' WHERE nombre='inglés'";
+    $post = json_decode(file_get_contents('php://input'), true);
+    $actividad = $post['actividad'];
+    $pregunta = $post['pregunta'];
+    $respuesta_correcta = $post['correcta'];
+    //Consulta
+    $curso = $post['curso'];
+    $cursos_id_tabla = mysqli_query($con, "SELECT id FROM cursos WHERE nombre='$curso'");
+    $respuestas_id_tabla = mysqli_query($con, "SELECT id FROM respuestas_ejercicio_2 ORDER BY id DESC LIMIT 1");
+    $cursos_id = mysqli_fetch_array($cursos_id_tabla);
+    $respuestas_id = mysqli_fetch_array($respuestas_id_tabla);
+    $cursos_id = $cursos_id['id'];
+    $respuestas_id = $respuestas_id['id'];
+    $sql = "INSERT INTO ejercicio_2 (nombre_actividad,pregunta,respuestas_id, respuesta_correcta, cursos_id) VALUES ('$actividad', '$pregunta', '$respuestas_id', '$respuesta_correcta', '$cursos_id')";
+
+
     break;
 
     //   $email = $_POST["email"];

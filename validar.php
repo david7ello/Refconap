@@ -14,6 +14,16 @@ if (($_POST["correo"]) and ($_POST["password"])) {
 		if ($_POST['tipo'] === "A") {
 			$tipo = 1;
 		}
+
+		if ($_POST['tipo'] === "I") {
+			$tipo = 2;
+		}
+
+
+		if ($_POST['tipo'] === "P") {
+			$tipo = 3;
+		}
+
 		// Variables para el Captcha
 		$ip = $_SERVER['REMOTE_ADDR'];
 		$captcha = $_POST['g-recaptcha-response'];
