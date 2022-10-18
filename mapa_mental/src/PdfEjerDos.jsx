@@ -16,11 +16,10 @@ const PdfEjerDos = ({ preguntas,actividad,puntuacion }) => {
     doc.setFontSize(36);
     doc.text(
       `
-      Actividad:${actividad}
       Obtuviste ${puntuacion} respuestas correctas.
-      Respuestas:
+      
       `,
-      20,
+      10,
       30
     );
 
