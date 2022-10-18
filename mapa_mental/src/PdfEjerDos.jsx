@@ -13,16 +13,7 @@ const PdfEjerDos = ({ preguntas,actividad,puntuacion }) => {
     const tamañoImg = {height:50, width:50}
     const doc = new jsPDF();
     doc.setFont("Arial", "normal");
-    doc.setFontSize(36);
-    doc.text(
-      `
-      Obtuviste ${puntuacion} respuestas correctas.
-      
-      `,
-      10,
-      30
-    );
-
+      doc.setFontSize(36);
       doc.text (
         `
         ${actividad}

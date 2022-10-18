@@ -127,7 +127,7 @@ return (
           <div>
             {!areDisable ? (
               <span className="tiempo-restante">
-                Tiempo restate:{tiempoRestante}
+                
               </span>
             ) : (
               <button

@@ -13,7 +13,7 @@ include("head.php");
 ?>
 
 
-<body>
+<body >
     <script>
         function allowDrop(e) {
             e.preventDefault();
@@ -33,7 +33,7 @@ include("head.php");
     include("menu.php");
     ?>
 
-    <div class="ejerUno">
+    <div class="ejerUno" id="pantalla1">
 
         <header>
             <h2>GRUPOS DE PROCESOS</h2>
@@ -183,15 +183,23 @@ include("head.php");
 
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+
     <script src="ejerUno.js"></script>
     <script type="text/javascript">
 
         function genPDF(){
-        var doc = new jsPDF()
-        doc.text('Hello world!', 10, 10)
-        doc.save('a4.pdf')
-        }
+        html2canvas(document.getElementById('pantalla1')).then(function(canvas){
+            document.body.appendChild(canvas)
+            var imgdata = canvas.toDataURL('image/png')
+            const tamañoImg = {height:50, width:50}
+            var doc = new jsPDF()
+            doc.addImage(imgdata,'PNG',0,0,tamañoImg.height, tamañoImg.width)
+            doc.save("ejercicio1.pdf")
+        })
         
+        }
+
     </script>
 
 </body>
