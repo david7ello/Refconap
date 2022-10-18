@@ -5,6 +5,7 @@ import preguntas from './preguntas';
 import { Link } from 'react-router-dom';
 import PdfEjerDos from './PdfEjerDos';
 import { useLocation } from "react-router-dom";
+import lineas from './lineas'
 
 
 
@@ -19,6 +20,7 @@ const PreguntasSelect = () => {
     const [isLoading, setIsLoading] = useState(false)
     const { actividad } = useLocation().state;
     
+    console.log(lineas)
 
     useEffect(() => {
       fetch("http://localhost:8000/api.php")
@@ -60,7 +62,7 @@ const PreguntasSelect = () => {
             <span>Obtuviste {puntuacion} de {preguntas.length}</span>
             <button onClick={()=>window.location.href="/"}>Volver a jugar</button>
 
-            <PdfEjerDos preguntas={preguntas} actividad={actividad} puntuacion={puntuacion}/>
+            <PdfEjerDos preguntas={preguntas} actividad={actividad} puntuacion={puntuacion} lineas={lineas}/>
             
             
             <button onClick={()=>{
