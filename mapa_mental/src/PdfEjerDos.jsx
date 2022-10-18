@@ -8,6 +8,7 @@ const PdfEjerDos = ({ preguntas,actividad,puntuacion }) => {
   const respuestaDos = preguntas[0].opciones[0].textoRespuesta;
   const respuestaTres = preguntas[0].opciones[0].textoRespuesta;
   const respuestaCuatro = preguntas[0].opciones[0].textoRespuesta;
+ 
 
   const crearPdf = () => {
     const tamañoImg = {height:50, width:50}
@@ -26,7 +27,7 @@ const PdfEjerDos = ({ preguntas,actividad,puntuacion }) => {
     doc.addImage(img, "png", 30, 50, tamañoImg.height, tamañoImg.width);
     
     var img2 = new Image();
-    img2.src = respuestaDos;
+    img2.src = respuestaDos ;
     doc.addImage(img2, "png", 130, 50, tamañoImg.height, tamañoImg.width);
     
     var img3 = new Image();

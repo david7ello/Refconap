@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./assets/global.css";
+import { Link } from "react-router-dom";
 const crearPreguntas = () => {
   const { nombre, grupo } = useLocation().state;
+  
 
 
   const [arrPregunta, setArrPregunta] = useState({
@@ -137,8 +139,10 @@ const crearPreguntas = () => {
       </div>
 
       <div className="siguiente">
-        <button>Siguiente pregunta</button>
-        <button onClick={handleSave}>Guardar ejercicio</button>
+        <Link to={"/crearActividad"}>
+        <button>Cancelar</button>
+        </Link>
+        <button onClick={handleSave}>Guardar pregunta</button>
       </div>
     </main>
   );
