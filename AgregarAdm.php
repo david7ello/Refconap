@@ -32,7 +32,7 @@ include ("head.php");
 	<div align="center">
 		<div class="div_container" style="width: 700px;">
 			<div class="div_container_title" style="height: 35px;">
-				<font class="font_title">AGREGAR ADMINISTRADOR</font>
+				<font class="font_title">AGREGAR USUARIO</font>
 			</div><br>
 			<div class="list-group" style="width:90%;">
 				<form action="InsertarAdm.php" method="post" enctype="multipart/form-data">

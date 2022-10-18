@@ -42,7 +42,7 @@ include ("head.php");
 	<div align="center">
 		<div class="div_container" style="width: 700px;">
 			<div class="div_container_title" style="height: 35px;">
-				<font class="font_title">AGREGAR ADMINISTRADOR</font>
+				<font class="font_title">EDITAR USUARIO</font>
 			</div><br>
 			<div class="list-group" style="width:90%;">
 				<form action="InsertarAdm.php" method="post" enctype="multipart/form-data">
@@ -51,7 +51,7 @@ include ("head.php");
 							<label for="inputEmail4">Nombre</label>
 							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required value=<?php echo $nombre ?>>
 							<label for="inputEmail4">Apellidos</label>
-							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value=<?php echo $apellidos ?>>
+							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value=<?php echo $apellido ?>>
 						</div>
 						<div class="form-group col-md-3 text-left">
 							<label for="inputEmail4">Teléfono</label>
@@ -78,7 +78,7 @@ include ("head.php");
 						<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Correo</label>
-							<input type="email" class="form-control" id="correo" name="correo" placeholder="" required value="">
+							<input type="email" class="form-control" id="correo" name="correo" placeholder="" required value=<?php echo $correo ?>>
 						</div>
 
 					<div class="row">
