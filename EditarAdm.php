@@ -1,8 +1,18 @@
 <?php
 include("valida_pagina.php");
 
-$queryAdmin = "SELECT * FROM usuarios";
-$usuariosDB =  mysqli_query($link, $queryAdmin);
+$queryUsuario = "SELECT nombre, apellidos, celular, correo, roles, password FROM usuarios WHERE id_user=" .$_GET['id_user'];
+$usuarioDB = mysqli_query($link, $queryUsuario);
+
+$usuario = mysqli_fetch_array($usuarioDB);
+
+$nombre = $usuario['nombre'];
+$apellido = $usuario['apellidos'];
+$celular = $usuario['celular'];
+$password = $usuario['password'];
+$correo = $usuario['correo'];
+$rol = $usuario['rol'];
+
 
 $queryRoles = "SELECT * FROM `roles`"; //traemos la información de nuestra tabla
 $roles = mysqli_query($link, $queryRoles);
@@ -39,20 +49,20 @@ include ("head.php");
 					<div class="row">
 						<div class="form-group col-md-9 text-left">
 							<label for="inputEmail4">Nombre</label>
-							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required value="">
+							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required value=<?php echo $nombre ?>>
 							<label for="inputEmail4">Apellidos</label>
-							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value="">
+							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value=<?php echo $apellidos ?>>
 						</div>
 						<div class="form-group col-md-3 text-left">
 							<label for="inputEmail4">Teléfono</label>
-							<input type="number" class="form-control" id="celular" name="celular" placeholder="" required value="">						
+							<input type="number" class="form-control" id="celular" name="celular" placeholder="" required value=<?php echo $celular ?>>						
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Contraseña</label>
-							<input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="" required value="">
+							<input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="" required value=<?php echo $password ?>>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Rol de usuario</label>
@@ -113,44 +123,7 @@ include ("head.php");
 		</div>
 	</div>
 
-	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Apellidos</th>
-					<th>Correo</th>
-					<th>Celular</th>
-					<th>Estatus</th>
-					<th>Roles</th>
-					<th>Fecha alta</th>
-					<th>Opciones</th>
-				</tr>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				while ($fila = $usuariosDB->fetch_assoc()) { //ciclo para recorrido de las filas
-					echo "<tr>        
-        <td>" . $fila["nombre"] . "</td>
-        <td>" . $fila["apellidos"] . "</td>
-        <td>" . $fila["correo"] . "</td>
-        <td>" . $fila["celular"] . "</td>
-		<td>" . $fila["estatus"] . "</td>
-		<td>" . getRol($fila["roles"]) ."</td>
-		<td>" . $fila["fecha_alta"] . "</td>
-		
-        
-        <td>" . "<form method='POST'>
-		<a href='editarAdm.php?id_user=" . $fila["id_user"] . "'><button type='button' class='btn btn-default boton_color'>Editar</button></a>
-		<a href='InsertarAdm.php?id_eliminar_usuario=" . $fila["id_user"] . "'><button type='button' class='btn btn-default boton_color'>Eliminar</button></a>
-		</form>" . "</td>
-    	</tr>";
-				}
-				?>
-			</tbody>
-		</table>
-	</div>
+
 
 
 </body>

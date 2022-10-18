@@ -7,7 +7,6 @@ $cursosBD =  mysqli_query($link, $queryCursos); //enviamos nuestra conexión
 $queryInstructores = "SELECT `id_user`, `nombre`, `apellidos` FROM `usuarios` WHERE roles=2"; //traemos la información de nuestra tabla
 $instructores = mysqli_query($link, $queryInstructores);
 
-
 function getInstructor($idInstructor)
 {
 	foreach ($GLOBALS['instructores'] as $instructor) {
