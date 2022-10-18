@@ -34,7 +34,7 @@ include("menu.php")
 
 						<div class="caption">
 							<h3> Ejercicio 1</h3>
-							<p>Relación de columnas</p>
+							<p>Grupos de procesos</p>
 							<p>
 								<div class="row">
 									<div class="col-md-3 text-center"></div>
@@ -57,7 +57,7 @@ include("menu.php")
 						<img src="images/REFCONAP.png" alt="Ejercicio 2" width="220px" height="170px%">
 						<div class="caption">
 							<h3> Ejercicio 2</h3>
-							<p>Coloca texto descriptivo</p>
+							<p>Preguntas y respuestas</p>
 								<p>
 									<div class="row">
 										<div class="col-md-3 text-center"></div>
