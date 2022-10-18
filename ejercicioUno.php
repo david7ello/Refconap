@@ -192,9 +192,9 @@ include("head.php");
         html2canvas(document.getElementById('pantalla1')).then(function(canvas){
             document.body.appendChild(canvas)
             var imgdata = canvas.toDataURL('image/png')
-            const tamañoImg = {height:50, width:50}
-            var doc = new jsPDF()
-            doc.addImage(imgdata,'PNG',0,0,tamañoImg.height, tamañoImg.width)
+            const tamañoImg = {height:1500, width:200}
+            const doc = new jsPDF()
+            doc.addImage(imgdata,'PNG',0,0, tamañoImg.width,tamañoImg.height)
             doc.save("ejercicio1.pdf")
         })
         
