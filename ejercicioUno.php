@@ -37,6 +37,7 @@ include("head.php");
 
         <header>
             <h2>GRUPOS DE PROCESOS</h2>
+            <button onclick="genPDF()">Generar Pdf</button>
         </header>
         <div class="listas">
             <div class="lista" ondrop="drop(event)" ondragover="allowDrop(event)">ÁREAS DE CONOCIMIENTO
@@ -181,7 +182,17 @@ include("head.php");
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
     <script src="ejerUno.js"></script>
+    <script type="text/javascript">
+
+        function genPDF(){
+        var doc = new jsPDF()
+        doc.text('Hello world!', 10, 10)
+        doc.save('a4.pdf')
+        }
+        
+    </script>
 
 </body>
 
