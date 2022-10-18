@@ -15,7 +15,6 @@ export const SeleccionarCurso = () => {
         setIsLoading(false)
       } );
   }, []);
-  console.log(data)
 
   const selectGrupp = (e) => {
     setCambioGrupo(e.target.value);
@@ -48,7 +47,7 @@ export const SeleccionarCurso = () => {
           })}
         </select>
                 <br />
-                <Link to={"/resolverEjercicio2"} state={{}}>
+                <Link to={"/resolverEjercicio2"} state={{actividad:cambioGrupo}}>
                 <button>Empezar cuestionario</button>
                 </Link>
                 <a href='http://localhost:8000/ejercicioDos.php' className='buttons'>Regresar</a>

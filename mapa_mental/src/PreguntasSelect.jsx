@@ -4,6 +4,8 @@ import "./assets/global.css";
 import preguntas from './preguntas';
 import { Link } from 'react-router-dom';
 import PdfEjerDos from './PdfEjerDos';
+import { useLocation } from "react-router-dom";
+
 
 
 const PreguntasSelect = () => {
@@ -15,6 +17,8 @@ const PreguntasSelect = () => {
     const [mostrarCorrectas,setMostrarCorrectas] = useState(false);
     const [data, setData] = useState()
     const [isLoading, setIsLoading] = useState(false)
+    const { actividad } = useLocation().state;
+    
 
     useEffect(() => {
       fetch("http://localhost:8000/api.php")
@@ -24,9 +28,6 @@ const PreguntasSelect = () => {
           setIsLoading(false)
         } );
     }, []);
-    
-    const respuestaUno = preguntas[0].opciones[0].textoRespuesta
-    console.log(respuestaUno)
 
     function siguientePregunta(isCorrect,e){
         //añadir puntos
@@ -47,7 +48,7 @@ const PreguntasSelect = () => {
         const interval=setInterval(()=>{
           if(tiempoRestante>0) setTiempoRestante((prev)=>prev-1)
           if(tiempoRestante===0)setAreDisable(true)
-        },1000);
+        },30000);
     
         return()=> clearInterval(interval);
       }, [tiempoRestante]);
@@ -59,7 +60,8 @@ const PreguntasSelect = () => {
             <span>Obtuviste {puntuacion} de {preguntas.length}</span>
             <button onClick={()=>window.location.href="/"}>Volver a jugar</button>
 
-            <PdfEjerDos preguntas={preguntas}/>
+            <PdfEjerDos preguntas={preguntas} actividad={actividad} puntuacion={puntuacion}/>
+            
             
             <button onClick={()=>{
               setisFinished(false);
