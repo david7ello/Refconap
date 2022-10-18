@@ -10,20 +10,17 @@ const PdfEjerDos = ({ preguntas,actividad,puntuacion }) => {
     doc.setFont("Arial", "normal");
     doc.setFontSize(10);
     doc.text(
-      `Actividad:${actividad}
-      Obtuviste ${puntuacion} respuestas buenas
+      `
+      Actividad:${actividad}
+      Obtuviste ${puntuacion} respuestas correctas.
       Respuestas:
-      img1:
-      img2:
-      img3:
-      img4:
       `,
       20,
       30
     );
     var img = new Image();
     img.src = respuestaUno;
-    doc.addImage(img, "png", 50, 50);
+    doc.addImage(img, "png", 0, 50);
     doc.save(`mapa mental.pdf`);
   };
   
