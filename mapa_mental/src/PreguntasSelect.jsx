@@ -17,18 +17,36 @@ const PreguntasSelect = () => {
     const [areDisable, setAreDisable] = useState(false);
     const [mostrarCorrectas,setMostrarCorrectas] = useState(false);
     const [data, setData] = useState()
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const { actividad } = useLocation().state;
-    
+    const [images, setImages] = useState();
+
     console.log(lineas)
 
     useEffect(() => {
-      fetch("http://localhost:8000/api.php")
+      fetch("http://localhost:8000/ejercicio2Api.php", {
+        method: "POST",
+        body: actividad,
+      })
         .then((response) => response.json())
         .then((data) =>{
           setData(data)
           setIsLoading(false)
+
+          fetch("http://localhost:8000/ejercicio2.Api.php",{
+            method:"GET",
+            body: data.preguntas_id
+          }).then((response)=>response.json())
+            .then((data)=>{
+              setImages(data)
+              setIsLoading(false);
+            })
+
+
         } );
+        
+        
+        
     }, []);
 
     function siguientePregunta(isCorrect,e){
@@ -124,7 +142,8 @@ return (
             <span>Pregunta {preguntaActual + 1} de</span> {preguntas.length}
           </div>
           <div className="titulo-pregunta">
-            {preguntas[preguntaActual].pregunta}
+            {data.pregunta}
+            
           </div>
           <div>
             {!areDisable ? (

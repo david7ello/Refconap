@@ -13,7 +13,7 @@ include("head.php");
 ?>
 
 
-<body >
+<body>
     <script>
         function allowDrop(e) {
             e.preventDefault();
@@ -33,11 +33,11 @@ include("head.php");
     include("menu.php");
     ?>
 
-    <div class="ejerUno" id="pantalla1">
+    <button class="btn-flotante" onclick="genPDF()" >Generar Pdf</button>
 
+    <div class="ejerUno" id="pantalla1">
         <header>
             <h2>GRUPOS DE PROCESOS</h2>
-            <button class="btn-flotante" onclick="genPDF()" >Generar Pdf</button>
         </header>
         <div class="listas">
             <div class="lista" ondrop="drop(event)" ondragover="allowDrop(event)">ÁREAS DE CONOCIMIENTO
