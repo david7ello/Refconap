@@ -1,7 +1,7 @@
 <?php
 include("valida_pagina.php");
 
-$queryUsuario = "SELECT nombre, apellidos, celular, correo, roles, password FROM usuarios WHERE id_user=" .$_GET['id_user'];
+$queryUsuario = "SELECT nombre, apellidos, celular, correo, roles, password, id_user FROM usuarios WHERE id_user=" .$_GET['id_user'];
 $usuarioDB = mysqli_query($link, $queryUsuario);
 
 $usuario = mysqli_fetch_array($usuarioDB);
@@ -11,7 +11,8 @@ $apellido = $usuario['apellidos'];
 $celular = $usuario['celular'];
 $password = $usuario['password'];
 $correo = $usuario['correo'];
-$rol = $usuario['rol'];
+$rol = $usuario['roles'];
+$id_user = $usuario['id_user'];
 
 
 $queryRoles = "SELECT * FROM `roles`"; //traemos la información de nuestra tabla
@@ -49,28 +50,27 @@ include ("head.php");
 					<div class="row">
 						<div class="form-group col-md-9 text-left">
 							<label for="inputEmail4">Nombre</label>
-							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required value=<?php echo $nombre ?>>
+							<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="" required value="<?php echo $nombre ?>">
 							<label for="inputEmail4">Apellidos</label>
-							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value=<?php echo $apellido ?>>
+							<input type="text" class="form-control" id="apellidos_adm" name="apellidos_adm" placeholder="" required value="<?php echo $apellido ?>">
 						</div>
 						<div class="form-group col-md-3 text-left">
 							<label for="inputEmail4">Teléfono</label>
-							<input type="number" class="form-control" id="celular" name="celular" placeholder="" required value=<?php echo $celular ?>>						
+							<input type="number" class="form-control" id="celular" name="celular" placeholder="" required value="<?php echo $celular ?>">						
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Contraseña</label>
-							<input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="" required value=<?php echo $password ?>>
+							<input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="" required value="<?php echo $password ?>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Rol de usuario</label>
 							<select id="rol" name="rol" required value="">
-								<option value="">Selecciona un rol de usuarios</option>
-								<option value="1">Administrador</option>
-								<option value="2">Instructor</option>
-								<option value="3">Participante</option>
+								<option value="1" <?php if($rol == 1) echo 'selected="selected"'?>>Administrador</option>
+								<option value="2" <?php if($rol == 2) echo 'selected="selected"'?>>Instructor</option>
+								<option value="3" <?php if($rol == 3) echo 'selected="selected"'?>>Participante</option>
 							</select>
 						</div> 
 					</div>
@@ -83,7 +83,8 @@ include ("head.php");
 
 					<div class="row">
 						<div class="form-group col-md-12 text-center">
-							<input type="hidden" name="btn_guardar" value="guardar">
+							<input type="hidden" name="id_user_editar" id="id_user_editar" value="<?php echo $id_user?>">
+							<input type="hidden" name="btn_actualizarUsuario" value="guardar">
 							<button type="submit" class="btn btn-default boton_color">Guardar <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=#597e8d class="bi bi-save2-fill" viewBox="0 0 16 16">  <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2v-6z"/> </svg> </span></button>
 						</div>
 					</div>
