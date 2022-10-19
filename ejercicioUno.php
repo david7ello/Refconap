@@ -37,7 +37,7 @@ include("head.php");
 
         <header>
             <h2>GRUPOS DE PROCESOS</h2>
-            <button onclick="genPDF()">Generar Pdf</button>
+            <button class="btn-flotante" onclick="genPDF()" >Generar Pdf</button>
         </header>
         <div class="listas">
             <div class="lista" ondrop="drop(event)" ondragover="allowDrop(event)">ÁREAS DE CONOCIMIENTO
