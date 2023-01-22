@@ -20,7 +20,7 @@ include("head.php")
 
         <section class="menuEjeDos">
             <ul>
-                <a href="http://127.0.0.1:5173/crearActividad">Alta actividad</a>
+                <a href="altaEjercicio2.php">Alta actividad</a>
                 <a href="http://127.0.0.1:5173/seleccionCurso">Resolver actividad</a>
                 <a href="sistema.php">Regresar</a>
                 

@@ -1,25 +1,17 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Allow: GET, POST, OPTIONS, PUT, DELETE");
-$response = array();
 
-$host = "localhost";
-// Puerto del servidor MySQL
-$port = "3306";
-// Nombre de usuario del servidor MySQL
-$user = "root";
-// Contraseña del usuario
-$password = "";
-// Nombre de la base de datos
-$dbname = "refconap";
 
-$con = mysqli_connect($host, $user, $password, $dbname);
 
 $upload_dir = 'uploads/';
 $server_url = 'http://localhost:8000';
 $error = '';
+$response = array(
+    "status"=> "error",
+    "error" => true,
+    "message" => "No se logro la conexión"
+);
+
+if(isset($_POST["btn_guardarPregunta"])){
 
 
 
@@ -79,6 +71,8 @@ if (!empty($_FILES)){
         "error" => true,
         "message" => $_FILES
     );
+}
+    
 }
 
 echo json_encode($response);
