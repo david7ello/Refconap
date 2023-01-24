@@ -1,5 +1,11 @@
 <?php
 include("valida_pagina.php");
+
+$queryCursos = "SELECT * FROM cursos";
+$cursos = mysqli_query($link, $queryCursos);
+
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,7 +38,12 @@ include("menu.php")
 
     function darValorCorrecta(event){
         valorCorrecto=event.target.value;
-        console.log(valorCorrecto);
+        span = document.getElementById("respuestaCorrectaMostrada");
+        input = document.getElementById("inputRespuestaCorrecta");
+        txt = document.createTextNode(valorCorrecto);
+        span.textContent =""
+        span.appendChild(txt);
+        input.value = valorCorrecto;
     }
 
 
@@ -41,20 +52,33 @@ include("menu.php")
 
 <form className="appuno" action="imgApi.php" method="post" enctype="multipart/form-data">
       <h2>Alta de ejercicio 2</h2>
-      <h2>Escribe tu pregunta</h2>
-      <input id="pregunta" name="pregunta" type="text"  />
-        <select id="numeroPregunta">
+      <h2>Busca el curso:</h2>
+      <input name="busquedaCurso" type="text"/>
+
+      <h2>Escribe el nombre de la actividad</h2>
+      <input id="actividad" name="actividad" type="text" required/>
+      
+      
+      
+      <h2>Pregunta número:</h2>
+     
+        <select id="numeroPregunta" name="numeroPregunta">
         <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
         </select>
 
-      <h2>Coloca tus imagenes</h2>
-      <h2>Respuesta correcta es </h2>
+      <h2>Escribe tu pregunta</h2>
+      <input id="pregunta" name="pregunta" type="text" required/>
+      
+      <h2>Respuesta correcta es:</h2>
+      <input id="inputRespuestaCorrecta" name="inputRespuestaCorrecta" class="" required/>
+      <span id="respuestaCorrectaMostrada" name="respuestaCorrectaMostrada">Ninguna</span> 
 
+      <h2>Coloca tus imagenes</h2>
       <div class="inputs">
-        <input id="imagenOpcionA" type="file" accept=".jpg" onChange={cargarImg1} />
+        <input id="imagenOpcionA" name="file1" type="file" accept=".jpg" required/>
         <input 
           id="opcionA"
           name="cambioCheck"
@@ -65,7 +89,7 @@ include("menu.php")
       </div>
 
       <div class="inputs">
-        <input id="imagenOpcionB" type="file" accept=".jpg" onChange={cargarImg2} />
+        <input id="imagenOpcionB" name="file2" type="file" accept=".jpg"required />
         <input
           id="opcionB"
           name="cambioCheck"
@@ -76,7 +100,7 @@ include("menu.php")
       </div>
 
       <div class="inputs">
-        <input id="imagenOpcionC" type="file" accept=".jpg" onChange={cargarImg3} />
+        <input id="imagenOpcionC" name="file3" type="file" accept=".jpg" required />
         <input
           id="opcionC"
           name="cambioCheck"
@@ -87,7 +111,7 @@ include("menu.php")
       </div>
 
       <div class="inputs">
-        <input id="imagenOpcionD" type="file" accept=".jpg" onChange={cargarImg4} />
+        <input id="imagenOpcionD" name="file4" type="file" accept=".jpg" required/>
         <input
           id="opcionD"
           name="cambioCheck"
@@ -101,7 +125,7 @@ include("menu.php")
         <a href="ejercicioDos.php">
         <button>Cancelar</button>
         </a>
-        <button onClick={handleSave}>Guardar pregunta</button>
+        <input type="submit" name="btn_guardarPregunta">Guardar pregunta</input>
         <button> Anterior</button>
         <button> Siguiente</button>
       </div>
