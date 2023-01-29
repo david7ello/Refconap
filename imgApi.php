@@ -15,6 +15,7 @@ if(isset($_POST["btn_guardarPregunta"])){
     $actividad = $_POST['actividad'];
     $pregunta = $_POST['pregunta'];
     $respuesta_correcta = $_POST['cambioCheck'];
+    $curso = $_POST['curso'];
 
 
 
@@ -60,8 +61,7 @@ if (!empty($_FILES)){
 
             $resultado = mysqli_query($link, "INSERT INTO respuestas_ejercicio_2 (respuesta_a, respuesta_b, respuesta_c, respuesta_d) VALUES ('$url1', '$url2', '$url3', '$url4') ");
             
-            $curso ='Inglés';
-            
+                        
             $cursos_id_tabla = mysqli_query($link, "SELECT id FROM cursos WHERE nombre='$curso'");
             $respuestas_id_tabla = mysqli_query($link, "SELECT id FROM respuestas_ejercicio_2 ORDER BY id DESC LIMIT 1");
             $cursos_id = mysqli_fetch_array($cursos_id_tabla);

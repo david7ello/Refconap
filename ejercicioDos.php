@@ -20,8 +20,14 @@ include("head.php")
 
         <section class="menuEjeDos">
             <ul>
+                <?php
+                if ($_SESSION['tipo'] == 1 or $_SESSION['tipo']==2) {
+                ?>
                 <a href="altaEjercicio2.php">Alta actividad</a>
-                <a href="http://127.0.0.1:5173/seleccionCurso">Resolver actividad</a>
+                <?php
+                }
+                ?>  
+                <a href="seleccionEjercicio2.php">Resolver actividad</a>
                 <a href="sistema.php">Regresar</a>
                 
 

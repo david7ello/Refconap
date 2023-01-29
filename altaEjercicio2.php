@@ -3,9 +3,6 @@ include("valida_pagina.php");
 
 $queryCursos = "SELECT * FROM cursos";
 $cursos = mysqli_query($link, $queryCursos);
-
-
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,8 +49,17 @@ include("menu.php")
 
 <form className="appuno" action="imgApi.php" method="post" enctype="multipart/form-data">
       <h2>Alta de ejercicio 2</h2>
-      <h2>Busca el curso:</h2>
-      <input name="busquedaCurso" type="text"/>
+      <h2>Busca el curso</h2>
+      <label>Elige el curso:</label>
+      <input list="lista" name="curso" id="seleccionCurso" onchange="autoCompletado(event)" required/>
+        <?php
+          echo "<datalist id='lista'>";
+          while ($fila = $cursos->fetch_assoc()){
+            echo "<option>". $fila["nombre"]."</option>";
+          }
+            echo "</datalist>";
+        ?>
+
 
       <h2>Escribe el nombre de la actividad</h2>
       <input id="actividad" name="actividad" type="text" required/>

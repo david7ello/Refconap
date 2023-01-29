@@ -40,8 +40,6 @@ include("menu.php")
 									<div class="col-md-3 text-center"></div>
 									<div class="col-md-6 text-center">
 										<form action="ejercicioUno.php" class="" method="post" role="form" id="forms">
-											<input type="hidden" id="nombre" name="nombre" value="<?PHP echo $_SESSION['nombre']; ?>">
-											<input type="hidden" id="contrasenia" name="contrasenia" value="<?PHP echo $_SESSION['password']; ?>">
 											<button name="boton" type="submit" class="btn btn-default boton_color">Entrar												
 											</button>
 										</form>
@@ -63,8 +61,6 @@ include("menu.php")
 										<div class="col-md-3 text-center"></div>
 										<div class="col-md-6 text-center">
 											<form action="ejercicioDos.php" class="" method="post" role="form" id="forms">
-												<input type="hidden" id="nombre" name="nombre" value="<?PHP echo $_SESSION['nombre']; ?>">
-												<input type="hidden" id="contrasenia" name="contrasenia" value="<?PHP echo $_SESSION['password']; ?>">
 												<button name="boton" type="submit" class="btn btn-default boton_color">Entrar</button>
 											</form>
 										</div>

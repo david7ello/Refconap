@@ -196,6 +196,7 @@ include("head.php");
             const doc = new jsPDF()
             doc.addImage(imgdata,'PNG',0,0, tamañoImg.width,tamañoImg.height)
             doc.save("ejercicio1.pdf")
+            document.body.removeChild(canvas)
         })
         
         }
