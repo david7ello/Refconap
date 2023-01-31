@@ -31,19 +31,30 @@ $nombre = $_SESSION["nombre"];
 
 <body>
     <script>
-        let time = 60;
         function setTimer(duration, display){
-            var duration = time, minutes, seconds;
-            setInterval(function(){
-                minutes = parseInt(time/60,10);
-                seconds = parseInt(time % 60, 10);
-                seconds = seconds--;
-                display-textContent = minutes + ":" + seconds
-            })
+           let conteo = setInterval(function(){
+                let now = new Date();
+                let tiempoRestante = now.getTime() - duration;
+                let seconds = Math.trunc(tiempoRestante/1000);
+                let minutes = Math.trunc(seconds/60);
+                let remainingSeconds = 60 - seconds; 
+                remainingSeconds = remainingSeconds < 10 ? "0" + remainingSeconds : remainingSeconds;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                display.textContent = minutes + ":" + remainingSeconds;
+                if (seconds >4){
+                    clearInterval(conteo);
+                    display.textContent = "Finalizo el tiempo ";
+                    let radiobutton = document.getElementById("opcion");
+                    radiobutton.setAttribute("disable", true);
+                }
+                
+            },1000)
         }
         window.onload = function() {
+            let date = new Date ()
+            date = date.getTime()
             display = document.getElementById("timer");
-            setTimer(1,display) 
+            setTimer(date,display) 
         } 
     </script>
 
@@ -69,7 +80,7 @@ $nombre = $_SESSION["nombre"];
 
             <h3>Tiempo restante: 
                 <span id="timer">
-                    00:00
+                    01:00
                 </span>min
             </h3>
 
