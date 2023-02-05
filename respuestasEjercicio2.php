@@ -23,42 +23,26 @@ $nombre = $_SESSION['nombre'];
         <div class="concepto"><label>Pregunta</label></div>
 
         <?php
+            $i=0;
             foreach($_POST as $respuesta){
-                $datos = exploted("?", respuesta);
-                if ($key==0){
+                $datos = explode("?", $respuesta);
+                if ($i==0){
                     echo '<div class="primerImagen">';
-                }elseif ($key==1) {
+                }elseif ($i==1) {
                     echo '<div class="segundaImagen">';
-                }elseif ($key==2) {
+                }elseif ($i==2) {
                     echo '<div class="terceraImagen">';
-                }elseif ($key==3) {
+                }elseif ($i==3) {
                     echo '<div class="cuartaImagen">';
                 }
-                echo '<img src="'.$datos[1].'" alt="Primer imagen" style="width:150px"/>';
-                echo '<label>Primer pregunta</label>';
+                if ($i<=3){
+                    echo '<img src="'.$datos[1].'" alt="Primer imagen" style="width: 150px;"/>';
+                    echo '<label>Primer pregunta</label>';
+                    echo '</div>';
+                }
+                $i++;
             }
-
         ?>
-
-        <div class="segundaImagen"> <!--Tercera Columna-->
-            <img src="" alt="Segunda imagen"/>
-            <label>Segunda pregunta</label>
-        </div>
-
-        <div class="terceraImagen"> <!--Primera columna fila 2-->
-            <img src="" alt="tercera imagen"/>
-            <label>tercera pregunta</label>
-        </div>
-
-        <div class="cuartaImagen"> <!--Segunda columna fila 2-->
-            <img src="" alt="cuarta imagen"/>
-            <label>cuarta pregunta</label>
-        </div>
     </div>
-
-
-
-
-
     </body>
 </html>
