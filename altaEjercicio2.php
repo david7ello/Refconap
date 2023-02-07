@@ -35,8 +35,19 @@ include("menu.php")
 
     function darValorCorrecta(event){
         valorCorrecto=event.target.value;
-        span = document.getElementById("respuestaCorrectaMostrada");
-        input = document.getElementById("inputRespuestaCorrecta");
+        if (event.target.name==="opcionPregunta1"){
+            span = document.getElementById("respuestaCorrectaMostrada1");
+            input = document.getElementById("inputRespuestaCorrecta1");
+        }else if (event.target.name==="opcionPregunta2"){
+            span = document.getElementById("respuestaCorrectaMostrada2");
+            input = document.getElementById("inputRespuestaCorrecta2");
+        }else if (event.target.name==="opcionPregunta3"){
+            span = document.getElementById("respuestaCorrectaMostrada3");
+            input = document.getElementById("inputRespuestaCorrecta3");
+        }else if (event.target.name==="opcionPregunta4"){
+            span = document.getElementById("respuestaCorrectaMostrada4");
+            input = document.getElementById("inputRespuestaCorrecta4")
+        }
         txt = document.createTextNode(valorCorrecto);
         span.textContent =""
         span.appendChild(txt);
@@ -63,77 +74,19 @@ include("menu.php")
 
       <h2>Escribe el nombre de la actividad</h2>
       <input id="actividad" name="actividad" type="text" required/>
-      
-      
-      
-      <h2>Pregunta número:</h2>
-     
-        <select id="numeroPregunta" name="numeroPregunta">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        </select>
 
-      <h2>Escribe tu pregunta</h2>
-      <input id="pregunta" name="pregunta" type="text" required/>
-      
-      <h2>Respuesta correcta es:</h2>
-      <input id="inputRespuestaCorrecta" name="inputRespuestaCorrecta" class="" required/>
-      <span id="respuestaCorrectaMostrada" name="respuestaCorrectaMostrada">Ninguna</span> 
+      <?php include('altaPregunta1Ejercicio2.php');
+            include('altaPregunta2Ejercicio2.php');
+            include('altaPregunta3Ejercicio2.php');
+            include('altaPregunta4Ejercicio2.php')
+            ?>
 
-      <h2>Coloca tus imagenes</h2>
-      <div class="inputs">
-        <input id="imagenOpcionA" name="file1" type="file" accept=".jpg" required/>
-        <input 
-          id="opcionA"
-          name="cambioCheck"
-          type="radio"
-          value="A"
-          onclick="darValorCorrecta(event)"
-        />
-      </div>
-
-      <div class="inputs">
-        <input id="imagenOpcionB" name="file2" type="file" accept=".jpg"required />
-        <input
-          id="opcionB"
-          name="cambioCheck"
-          type="radio"
-          value="B"
-          onclick="darValorCorrecta(event)"
-        />
-      </div>
-
-      <div class="inputs">
-        <input id="imagenOpcionC" name="file3" type="file" accept=".jpg" required />
-        <input
-          id="opcionC"
-          name="cambioCheck"
-          type="radio"
-          value="C"
-          onclick="darValorCorrecta(event)"
-        />
-      </div>
-
-      <div class="inputs">
-        <input id="imagenOpcionD" name="file4" type="file" accept=".jpg" required/>
-        <input
-          id="opcionD"
-          name="cambioCheck"
-          type="radio"
-          value="D"
-          onclick="darValorCorrecta(event)"
-        />
-      </div>
-
-      <div class="siguiente">
-        <a href="ejercicioDos.php">
+      <div class="btn_cancelar">
+        <a class="btn btn-danger" href="ejercicioDos.php">
         <button>Cancelar</button>
         </a>
-        <input type="submit" name="btn_guardarPregunta">Guardar pregunta</input>
-        <button> Anterior</button>
-        <button> Siguiente</button>
+        <input class="btn btn-sucess" type="submit" name="btn_guardarPregunta">Guardar pregunta</input>
+
       </div>
 </form>
   

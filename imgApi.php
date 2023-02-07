@@ -12,22 +12,29 @@ $response = array(
 );
 
 if(isset($_POST["btn_guardarPregunta"])){
-    $actividad = $_POST['actividad'];
-    $pregunta = $_POST['pregunta'];
-    $respuesta_correcta = $_POST['cambioCheck'];
-    $curso = $_POST['curso'];
-
+    if ((!empty($_POST['pregunta1'])) && (!empty($_POST['pregunta2'])) && (!empty($_POST['pregunta3'])) && (!empty($_POST['pregunta4']))){
+        $actividad = $_POST['actividad'];
+        $curso = $_POST['curso'];
+        for ($i = 0; $i<=3; $i++){
+            $pregunta[$i] = $_POST['pregunta' . $i];
+            $respuesta_correcta[$i] = $_POST['opcionPregunta' . $i];
+        }
+    }
 
 
 if (!empty($_FILES)){
-        $respuesta_a = $_FILES['file1'];
-        $error = $respuesta_a['error'];
-        $respuesta_b = $_FILES['file2'];
-        $error = $respuesta_b['error'];
-        $respuesta_c = $_FILES['file3'];
-        $error = $respuesta_c['error'];
-        $respuesta_d = $_FILES['file4'];
-        $error = $respuesta_d['error'];
+    for ($i = 0; $i<=3; $i++){
+        $j = $i + 1;
+        $respuestas_pregunta1[$i] = $_FILES['file' . $j . 'Pregunta1'];
+        $respuestas_pregunta2[$i] = $_FILES['file' . $j . 'Pregunta2'];
+        $respuestas_pregunta3[$i] = $_FILES['file' . $j . 'Pregunta3'];
+        $respuestas_pregunta4[$i] = $_FILES['file' . $j . 'Pregunta4'];
+        $error[$i] = $respuestas_pregunta1[$i]['error'];
+        $error[$i] = $respuestas_pregunta2[$i]['error'];
+        $error[$i] = $respuestas_pregunta3[$i]['error'];
+        $error[$i] = $respuestas_pregunta4[$i]['error'];
+    }
+
 
     if($error>0) {
         $response = array(
@@ -60,15 +67,14 @@ if (!empty($_FILES)){
 
 
             $resultado = mysqli_query($link, "INSERT INTO respuestas_ejercicio_2 (respuesta_a, respuesta_b, respuesta_c, respuesta_d) VALUES ('$url1', '$url2', '$url3', '$url4') ");
-            
-                        
+                  
             $cursos_id_tabla = mysqli_query($link, "SELECT id FROM cursos WHERE nombre='$curso'");
             $respuestas_id_tabla = mysqli_query($link, "SELECT id FROM respuestas_ejercicio_2 ORDER BY id DESC LIMIT 1");
             $cursos_id = mysqli_fetch_array($cursos_id_tabla);
             $respuestas_id = mysqli_fetch_array($respuestas_id_tabla);
             $cursos_id = $cursos_id['id'];
             $respuestas_id = $respuestas_id['id'];
-            $sql = "INSERT INTO ejercicio_2 (nombre_actividad,pregunta,respuestas_id, respuesta_correcta, cursos_id) VALUES ('$actividad', '$pregunta', '$respuestas_id', '$respuesta_correcta', '$cursos_id')";
+            $sql = "INSERT INTO ejercicio_2 (nombre_actividad,pregunta,respuestas_id, respuesta_correcta, cursos_id, numero_pregunta) VALUES ('$actividad', '$pregunta', '$respuestas_id', '$respuesta_correcta', '$cursos_id', '$numero_pregunta')";
 
 
             $result = mysqli_query($link, $sql);
