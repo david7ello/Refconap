@@ -10,15 +10,19 @@ if (isset($_POST["btn_registrarCurso"])) {
     $fechaInicio = $_POST["fecha_inicio"];
     $fechaTermino = $_POST["fecha_termino"]; //obteniendo la info para la almacenar
     $duracionCurso = $_POST["duracion_curso"];
+    $horasAlDia = $_POST["horas_al_dia_curso"];
+    $horarioInicio = $_POST["horario_inicio_curso"];
+    $horarioTermino = $_POST["horario_fin_curso"];
     $instructorAsignado = $_POST["select"];
-    echo $instructorAsignado;
     $duracionCursoInt = (int)$duracionCurso;
-
+    $horasAlDiaInt = (int)$horasAlDia;
     $nameValidate = false;
     $fechaInicioValidate = false;
     $fechaTerminoValidate = false;
     $duracionValidate = false;
     $instructorValidate = false;
+    $horasAlDiaValidate = false;
+    $horarioValidate = false;
 
     //Validar nombre
    if (!preg_match("|^[a-zñáéíóúA-ZÑÁÉÍÓÚ]+(\s*[a-zñáéíóúA-ZÑÁÉÍÓÚ]*)*[a-zñáéíóúA-ZÑÁÉÍÓÚ]+$|", $nombreCurso)) {
@@ -65,6 +69,17 @@ if (isset($_POST["btn_registrarCurso"])) {
         echo "Falta instructor";
     }
 
+    if ($horasAlDia <= 24){
+        $horasAlDiaValidate = true;
+        echo "Las horas deben de ser menor a 24 horas";
+    }
+
+    if ($horarioInicio <= $horarioTermino){
+        $horarioValidate = true;
+        echo "La hora de inicio tiene que ser mayor a la hora de finalización";
+    }
+
+
     $actvandoBtn = 'Registrar';
 }
 
@@ -86,9 +101,9 @@ if (isset($_GET["id_eliminar_curso"])) {
 switch ($actvandoBtn) {
 
     case "Registrar":
-        if ($nameValidate && $fechaInicioValidate && $fechaTerminoValidate && $duracionValidate && $instructorValidate) {
+        if ($nameValidate && $fechaInicioValidate && $fechaTerminoValidate && $duracionValidate && $instructorValidate && $horasAlDiaValidate) {
 
-            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion,instructor) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', $instructorAsignado)";
+            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion,instructor, horas_dia, hora_inicio, hora_fin) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', $instructorAsignado, '$horasAlDia', '$horarioInicio', '$horarioTermino')";
             $result = mysqli_query($link, $query); //almacenamos en nuestra variable el resultado de la consulta
 
             if ($result) {
@@ -100,7 +115,7 @@ switch ($actvandoBtn) {
         } else {
             $errorMessage = '';
 
-            if ($nameValidate == '' and $fechaInicioValidate == '' and $fechaTerminoValidate == '' and $duracionValidate == '' and $instructorValidate == '') {
+            if ($nameValidate == '' and $fechaInicioValidate == '' and $fechaTerminoValidate == '' and $duracionValidate == '' and $instructorValidate == '' and $horasAlDiaValidate== '') {
                 $errorMessage  = 'Todos los campos son requeridos';
             }
 
@@ -120,9 +135,9 @@ switch ($actvandoBtn) {
                 $errorMessage = "La duración no debe de ser menor a 8 horas";
             }
 
-            //if (!$instructorValidate) {
-                //$errorMessage = "Verificar instructor";
-            //}
+            if (!$horasAlDiaValidate) {
+                $errorMessage = "Las horas deben ser menores a 24 horas";
+            }
 
             header("Location: regCursos.php?error=$errorMessage");
 

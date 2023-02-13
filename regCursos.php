@@ -26,6 +26,28 @@ include("head.php")
 ?>
 
 <body>
+	<script>
+		function calcularHoraFin(event) {
+			let horaInicio = document.getElementById("horario_inicio_curso");
+			let cantidadHoras = document.getElementById("horas_al_dia_curso");
+			let horaFin = document.getElementById("horario_fin_curso");
+			if (horaInicio.value === "" || cantidadHoras.value === ""){
+				} else{
+				let fecha = new Date("2023-10-02T" + horaInicio.value);
+				if (fecha.getHours() + parseInt(cantidadHoras.value,10) < 24){
+					fecha.setHours(fecha.getHours() + parseInt(cantidadHoras.value,10));
+					let horas = fecha.getHours();
+					let minutos = fecha.getMinutes();
+					horas = horas < 10 ? "0" + horas : horas;
+					minutos = minutos < 10 ? "0" + minutos : minutos;
+					horaFin.value = horas + ":" + minutos;
+				}else {
+					alert("Número de horas al día mayores a 24, verifica por favor")
+				}
+			}	
+		}
+	</script>
+
 	<?php
 	include("menu.php")
 	?>
@@ -55,10 +77,28 @@ include("head.php")
 						</div>
 					</div>
 
-					<div class="row">
+						<div class="row">
 						<div class="form-group col-md-2">
 							<label for="inputEmail4">Duración</label>
 							<input type="number" class="form-control" id="duracion_curso" name="duracion_curso" placeholder="8 minimo" min="8" max="240" required value="">
+						</div>
+					
+						<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horas al día</label>
+							<input onblur="calcularHoraFin(event)" type="number" class="form-control" id="horas_al_dia_curso" name="horas_al_dia_curso" placeholder="1 minimo" min="1" max="24" required value="">
+						</div>
+					
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horario inicio</label>
+							<input onblur="" type="time" class="form-control" id="horario_inicio_curso" name="horario_inicio_curso" placeholder="" required value="">
+						</div>
+					
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horario termino</label>
+							<input type="time" class="form-control" id="horario_fin_curso" name="horario_fin_curso" placeholder="" required value="">
 						</div>
 
 						<div class="form-group col-md-6">
