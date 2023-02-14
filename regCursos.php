@@ -92,7 +92,7 @@ include("head.php")
 					<div class="row">
 						<div class="form-group col-md-3">
 							<label for="inputEmail4">Horario inicio</label>
-							<input onblur="" type="time" class="form-control" id="horario_inicio_curso" name="horario_inicio_curso" placeholder="" required value="">
+							<input onblur="calcularHoraFin(event)" type="time" class="form-control" id="horario_inicio_curso" name="horario_inicio_curso" placeholder="" required value="">
 						</div>
 					
 					<div class="row">
@@ -169,7 +169,7 @@ include("head.php")
 					<th>Instructor</th>
 					<th>Opciones</th>
 				</tr>
-				</tr>
+				
 			</thead>
 			<tbody>
 				<?php
