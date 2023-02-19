@@ -12,7 +12,6 @@ $dataCurso = mysqli_fetch_row($cursos);
 
 $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id=cursos.id) WHERE cursos_id=$dataCurso[0]";
 $actividades = mysqli_query($link, $queryActividades);
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,6 +20,11 @@ $actividades = mysqli_query($link, $queryActividades);
 <body>
 
 <div>
+    <h1>
+        <?php echo $_SESSION["nombre"]?> estas son tus actividades
+    </h1>
+
+
 	<table>
 		<thead>
 			<tr>
@@ -35,15 +39,17 @@ $actividades = mysqli_query($link, $queryActividades);
     
         <?php
 				while ($fila = $actividades->fetch_assoc()) { //ciclo para recorrido de las filas
-					echo "<tr>        
-        
-        <td>" . $fila["nombre"] . "</td>
-        <td>" . $fila["nombre_actividad"] . "</td>
-        <td>" . $fila["instructor"] . "</td>
-
-    
-        <td>" . "<form method='POST'>
-		<a href='editarCurso.php?id_curso=" . $fila["respuestas_id"] . "'><button type='button' class='btn btn-default boton_color'>Resolver</button></a>
+					$idInstructor = $fila["instructor"];
+                    $queryInstructor = "SELECT nombre, apellidos FROM usuarios WHERE id_user=$idInstructor;";
+                    $instructor = mysqli_query($link, $queryInstructor);
+                    $nombreInstructorArray = mysqli_fetch_row($instructor);
+                    $nombreInstructorCompleto = $nombreInstructorArray[0] . " ". $nombreInstructorArray[1];
+                    echo "<tr>        
+                    <td>" . $fila["nombre"] . "</td>
+                    <td>" . $fila["nombre_actividad"] . "</td>
+                    <td>" . $nombreInstructorCompleto . "</td>
+                    <td>" . "<form method='POST'>
+		            <a href='resolverEjercicio2.php?nombre_actividad=" . $fila["nombre_actividad"] . "'><button type='button' class='btn btn-default boton_color'>Resolver</button></a>
 
 		</form>" . "</td>
     	</tr>";
@@ -56,7 +62,7 @@ $actividades = mysqli_query($link, $queryActividades);
 
 
 
-    <form action="resolverEjercicio2.php" method="post" enctype="multipart/form-data">
+    <!-- <form action="resolverEjercicio2.php" method="post" enctype="multipart/form-data">
         <h2>Selecciona tu curso</h2>
         <input name="curso" list="cursos" />
         <?php
@@ -76,7 +82,8 @@ $actividades = mysqli_query($link, $queryActividades);
             echo '</datalist>'
         ?>
         <input name="btn_submit" type="submit"/>
-    </form>
+    </form> -->
+
 </body>
 
 </html>

@@ -62,7 +62,7 @@ include("menu.php")
       <h2>Alta de ejercicio 2</h2>
       <h2>Busca el curso</h2>
       <label>Elige el curso:</label>
-      <input list="lista" name="curso" id="seleccionCurso" onchange="autoCompletado(event)" required/>
+      <input list="lista" name="curso" id="seleccionCurso" required/>
         <?php
           echo "<datalist id='lista'>";
           while ($fila = $cursos->fetch_assoc()){
@@ -81,11 +81,10 @@ include("menu.php")
             include('altaPregunta4Ejercicio2.php')
             ?>
 
-      <div class="btn_cancelar">
-        <a class="btn btn-danger" href="ejercicioDos.php">
-        <button>Cancelar</button>
+      <div>
+        <a class="btn btn-danger" href="ejercicioDos.php">Cancelar
         </a>
-        <input class="btn btn-sucess" type="submit" name="btn_guardarPregunta">Guardar pregunta</input>
+        <input class="btn btn-sucess" type="submit" name="btn_guardarPregunta"></input>
 
       </div>
 </form>

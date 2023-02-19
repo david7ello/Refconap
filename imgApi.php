@@ -15,7 +15,7 @@ if(isset($_POST["btn_guardarPregunta"])){
     if ((!empty($_POST['pregunta1'])) && (!empty($_POST['pregunta2'])) && (!empty($_POST['pregunta3'])) && (!empty($_POST['pregunta4']))){
         $actividad = $_POST['actividad'];
         $curso = $_POST['curso'];
-        for ($i = 0; $i<=3; $i++){
+        for ($i = 1; $i<=3; $i++){
             $pregunta[$i] = $_POST['pregunta' . $i];
             $respuesta_correcta[$i] = $_POST['opcionPregunta' . $i];
         }
@@ -24,15 +24,11 @@ if(isset($_POST["btn_guardarPregunta"])){
 
 if (!empty($_FILES)){
     for ($i = 0; $i<=3; $i++){
-        $j = $i + 1;
-        $respuestas_pregunta1[$i] = $_FILES['file' . $j . 'Pregunta1'];
-        $respuestas_pregunta2[$i] = $_FILES['file' . $j . 'Pregunta2'];
-        $respuestas_pregunta3[$i] = $_FILES['file' . $j . 'Pregunta3'];
-        $respuestas_pregunta4[$i] = $_FILES['file' . $j . 'Pregunta4'];
-        $error[$i] = $respuestas_pregunta1[$i]['error'];
-        $error[$i] = $respuestas_pregunta2[$i]['error'];
-        $error[$i] = $respuestas_pregunta3[$i]['error'];
-        $error[$i] = $respuestas_pregunta4[$i]['error'];
+        for ($j=1; $j<=4; $j++){
+            $ipivote=$i+1;
+            $jpivote=$j+1;
+          $error = $_FILES['file'.$jpivote.'Pregunta'.$ipivote]['error'];  
+        }
     }
 
 
@@ -41,10 +37,6 @@ if (!empty($_FILES)){
             "status"=> "error",
             "error" => true,
             "message" => "Error al subir el archivo",
-            "archivo1" => $respuesta_a["error"],
-            "archivo2" => $respuesta_b["error"],
-            "archivo3" => $respuesta_c["error"],
-            "archivo4" => $respuesta_d["error"],
         );
     }else {
         $random_name_a = rand(1,1000000)."-".$respuesta_a['name'];

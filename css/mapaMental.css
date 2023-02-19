@@ -1,8 +1,19 @@
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
     grid-auto-rows: minmax(100px, auto);
+    align-items: center;
+    margin: 15px;
+    padding: 15px;
+    width: 800px;
+    text-align: center;
 }
 
 .primerImagen {
