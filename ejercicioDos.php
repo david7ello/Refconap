@@ -23,37 +23,25 @@ include("head.php")
                 <?php
                 if ($_SESSION['tipo'] == 1 or $_SESSION['tipo']==2) {
                 ?>
-                <a href="altaEjercicio2.php">Alta actividad</a>
+                <a href="altaEjercicio2.php">ALTA ACTIVIDAD</a>
                 <?php
                 }
                 ?>  
-                <a href="seleccionEjercicio2.php">Resolver actividad</a>
-                <a href="sistema.php">Regresar</a>
-                
-
+                <a href="seleccionEjercicio2.php">RESOLVER ACTIVIDAD</a>
+                <a href="sistema.php">REGRESAR</a>
             </ul>
-
-
-
-
             <!-- <div>
                 <input class="botConf" type="submit" value="Alta actividad"/>
-                
             </div>
-
             <div>
                 <input class="botConf" type="submit" value="Alta actividad"/>
             </div>
-
             <div>
                 <input class="botConf" type="submit" value="Alta actividad"/>
             </div>
-
             <div>
                 <input class="botConf" type="submit" value="Alta actividad"/>
             </div>
-
-
             <div>
             <a href="/cerrar.php"><input class="botCerrar" type="submit" value="CERRAR SESIÓN"/></a>
             </div> -->
