@@ -29,9 +29,9 @@ body {
 }
 
 .fondo {
-
 	background: var(--blanco);
-	background: linear-gradient(125deg, var(--blanco) 60%, var(--azul) 90%);
+	/* background: linear-gradient(125deg, var(--blanco) 60%, var(--azul) 90%); */
+	background:radial-gradient(circle at 30% 50%, white 50%, rgb(65, 143, 222) 90%);
 	font-size:16px;
 	padding: 15px 20px;
 	color:#484848;
