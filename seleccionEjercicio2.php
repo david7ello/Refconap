@@ -8,10 +8,16 @@ $idUsuario = $_SESSION['id_user'];
 $queryCursos = "SELECT curso_id FROM lista_cursos WHERE user_id=$idUsuario";
 $cursos = mysqli_query($link, $queryCursos);
 $dataCurso = mysqli_fetch_row($cursos);
-
-
-$queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id=cursos.id) WHERE cursos_id=$dataCurso[0]";
+$rol = $_SESSION['tipo'];
+if($rol==1){
+    $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id = cursos.id)";
+} else {
+    $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id=cursos.id) WHERE cursos_id=$dataCurso[0]";
+    
+}
 $actividades = mysqli_query($link, $queryActividades);
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

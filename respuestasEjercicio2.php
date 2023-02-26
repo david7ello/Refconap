@@ -6,8 +6,8 @@ include("menu.php");
 $actividad = $_SESSION['actividad'];
 $curso = $_SESSION['curso'];
 $nombre = $_SESSION['nombre'];
-
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -54,12 +54,13 @@ $nombre = $_SESSION['nombre'];
     <div class="contenedor">
 
     <div id="mapaMental" class="grid"> <!--Contenedor principal-->
-        <div class="concepto"><label>Pregunta</label></div>
+        <div class="concepto"><label> <?php echo $actividad ?> </label></div>
 
         <?php
             $i=0;
-            foreach($_POST as $respuesta){
-                $datos = explode("?", $respuesta);
+            foreach(array_reverse($_POST) as $respuesta){
+                if ($respuesta != "Enviar"){
+                $datos = explode("+", $respuesta);
                 if ($i==0){
                     echo '<div class="primerImagen">';
                 }elseif ($i==1) {
@@ -71,12 +72,18 @@ $nombre = $_SESSION['nombre'];
                 }
                 if ($i<=3){
                     echo '<img src="'.$datos[1].'" alt="Primer imagen" style="width: 150px;"/>';
-                    echo '<label>Primer pregunta</label>';
+                    echo '<div>';
+                    echo '<label>'. $datos[0] . '</label>';
+                    echo '</div>';
                     echo '</div>';
                 }
                 $i++;
+             }
             }
         ?>
+        <label class="nombre">
+            <?php echo $nombre ?>
+        </label>
     </div>
 </div>
     </body>

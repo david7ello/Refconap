@@ -7,6 +7,9 @@ $usuariosDB =  mysqli_query($link, $queryAdmin);
 $queryRoles = "SELECT * FROM `roles`"; //traemos la información de nuestra tabla
 $roles = mysqli_query($link, $queryRoles);
 
+$queryCursos = "SELECT DISTINCT id, nombre FROM cursos;";
+$cursos = mysqli_query($link, $queryCursos);
+
 function getRol($idRol)
 {
 	foreach ($GLOBALS['roles'] as $rol) {
@@ -63,13 +66,32 @@ include ("head.php");
 								<option value="3">Participante</option>
 							</select>
 						</div> 
+							
 					</div>
 
 						<div class="row">
-						<div class="form-group col-md-6">
-							<label for="inputEmail4">Correo</label>
-							<input type="email" class="form-control" id="correo" name="correo" placeholder="" required value="">
+							<div class="form-group col-md-6">
+								<label for="inputEmail4">Correo</label>
+								<input type="email" class="form-control" id="correo" name="correo" placeholder="" required value="">
+							</div>
+
+							<div class="form-group col-md-6">
+								<label>Asigna el curso del usuario</label>
+								<select name="curso" required value="">
+									<option value="">Selecciona el curso</option>
+									<?php
+										while ($curso=$cursos->fetch_assoc()) {
+											echo '<option value="'.$curso['id'].'">'.$curso['nombre'].'</option>';
+										}
+									?>
+
+								</select>
+							</div> 
 						</div>
+
+						
+						
+
 
 					<div class="row">
 						<div class="form-group col-md-12 text-center">
@@ -77,6 +99,9 @@ include ("head.php");
 							<button type="submit" class="btn btn-default boton_color">Guardar <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=#597e8d class="bi bi-save2-fill" viewBox="0 0 16 16">  <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v6h-2a.5.5 0 0 0-.354.854l2.5 2.5a.5.5 0 0 0 .708 0l2.5-2.5A.5.5 0 0 0 10.5 7.5h-2v-6z"/> </svg> </span></button>
 						</div>
 					</div>
+					
+
+
 				</form>
 
 				<form action="sistema.php" method="post">

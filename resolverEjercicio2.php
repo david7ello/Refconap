@@ -112,8 +112,8 @@ $_SESSION['curso'] = $curso;
                         $linkImagenes = mysqli_query($link, $imagenesRespuestas);
                         $arrayLinkImagenes = mysqli_fetch_row($linkImagenes);
                         foreach ($arrayLinkImagenes as $key => $linkImagen){                         
-                            echo '<img src="'. $linkImagen . '" alt="" style="width:150 px;"/>';
-                            echo '<input required type="radio" id="radio" name="'.$pregunta["pregunta"].'" value="'.$key.'?'.$linkImagen.'"/>';
+                            echo '<img src="'. $linkImagen . '" alt="" style="width:150 px; height:150px"/>';
+                            echo '<input required type="radio" id="radio" name="'.$pregunta["pregunta"].'" value="'.$pregunta["pregunta"].'+'.$linkImagen.'"/>';
                            } 
                                                
                     ?>

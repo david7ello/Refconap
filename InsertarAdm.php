@@ -106,6 +106,8 @@ if ($operacion=='Editar'){
 }
 
 if ($operacion == 'Eliminar'){
+		$queryListaCurso = "DELETE FROM lista_cursos WHERE user_id = $id_usuario";
+		$result = mysqli_query($link, $queryListaCurso);
 		$query = "DELETE FROM usuarios WHERE id_user = $id_usuario";
         $result = mysqli_query($link, $query);
 
@@ -132,6 +134,7 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 	$rol= $_POST['rol'];
 	date_default_timezone_set('America/Mexico_City');
 	$fecha_alta = date('y-m-d');
+	$idCurso=$_POST['curso'];
 	//$fecha = $_POST['fecha'];
 
 	$nombreValidate = false;
@@ -193,6 +196,17 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 		$query = "INSERT INTO usuarios (nombre,apellidos,password,correo,celular,estatus,roles,fecha_alta, fecha_baja)
 		VALUES ('".$nombre."', '".$apellidosAdm."', '".$contrasenia."', '".$correo."', '".$celular."', 'A', '".$rol."', '".$fecha_alta."','".NULL."')";
 		$result = mysqli_query($link, $query);
+
+		if($idCurso!=""){
+			$queryUsuario = "SELECT id_user FROM usuarios ORDER BY id_user DESC LIMIT 1;";
+			$id_user = mysqli_query($link, $queryUsuario);
+			$id_user = mysqli_fetch_array($id_user);
+			$id_user = $id_user['id_user'];
+			$query = "INSERT INTO lista_cursos(curso_id, user_id) VALUES ($idCurso,$id_user)";
+			$result_id = mysqli_query($link, $query);
+		}
+		
+
 		header("Location: AgregarAdm.php?success=El usuario se creo correctamente");
 		} else {
 			$errorMessage = "";
