@@ -58,6 +58,14 @@ include("menu.php")
 
 </script>
 
+<?php 
+if(!empty($_GET["sucess"])){
+  echo '<br/>';
+  echo '<div class =""> Actividad guardada </div>';
+  echo '<br/>';
+}
+?>
+
 <form className="appuno" action="imgApi.php" method="post" enctype="multipart/form-data">
       <h2>Alta de ejercicio 2</h2>
       <h2>Busca el curso</h2>

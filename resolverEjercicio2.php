@@ -4,7 +4,7 @@ include("valida_pagina.php");
 include("head.php");
 include("menu.php");
 $actividad = $_GET["nombre_actividad"];
-$queryPreguntas = "SELECT `pregunta`, `respuestas_id`, `respuesta_correcta` FROM `ejercicio_2` WHERE `nombre_actividad`='".$actividad."';";
+$queryPreguntas = "SELECT `pregunta`, `respuestas_id`, `respuesta_correcta` FROM `ejercicio_2` WHERE `nombre_actividad`='".$actividad."' ORDER BY id DESC LIMIT 4;";
 $preguntas = mysqli_query($link, $queryPreguntas);
 $queryCurso = "SELECT DISTINCT cursos_id FROM ejercicio_2 WHERE nombre_actividad='".$actividad."';";
 $curso = mysqli_query($link, $queryCurso);
