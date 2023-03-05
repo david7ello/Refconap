@@ -19,20 +19,12 @@ include("menu.php")
 ?>
 
 <body>
-    <label>Selecciona el curso:</label>
-    <input name="curso" list="cursos"/>
-    <datalist id="cursos">
-        <?php
-            while ($curso = $cursos->fetch_assoc()){
-                echo '<option>'.$curso["nombre"].'</option>';
-            }
-        ?>
-            <!-- <option>Ingles</option> -->
-    </datalist>
-
     <table>
         <thead>
-           <tr> 
+           <tr>
+                <th>
+                    Curso
+                </th> 
                 <th>
                     Ejercicio
                 </th>  
@@ -40,7 +32,10 @@ include("menu.php")
                     Participante
                 </th>
                 <th>
-                    Calificación
+                    Calificación Ejercicio 1
+                </th> 
+                <th>
+                    Calificación Ejercicio 2
                 </th> 
                 <th>
                     Evaluar
@@ -48,19 +43,29 @@ include("menu.php")
             <tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Riesgos</td>
-
+            
                 <?php
-                    echo '<td>'. $_SESSION["nombre"]. '</div>';
-                    $ejercicioQuery = "SELECT `calificacion2` FROM `calificaciones` WHERE `usuarios_id`=$idUsuario";
-                    $calificaciones = mysqli_query($link, $ejercicioQuery);
-                    $calificacion = mysqli_fetch_row($calificaciones);
-                    echo '<td>' . $calificacion[0] . '</td>';
-                    
+                
+                $participantesQuery ="SELECT ejercicio_2.nombre_actividad, calificacion1, calificacion2, cursos.nombre, usuarios.nombre AS nombre_usuario, usuarios.apellidos FROM calificaciones INNER JOIN lista_cursos ON calificaciones.cursos_id=lista_cursos.curso_id INNER JOIN ejercicio_2 ON ejercicios_2 = ejercicio_2.id INNER JOIN cursos ON calificaciones.cursos_id=cursos.id INNER JOIN usuarios ON usuarios_id = usuarios.id_user WHERE lista_cursos.user_id = $idUsuario;";
+                 
+                $calificaciones = mysqli_query($link, $participantesQuery);
+                // $calificacion = mysqli_fetch_array($calificaciones);
+                while ($calificacion = $calificaciones->fetch_assoc()){
+                echo '<tr>';
+                echo '<td>' . $calificacion['nombre'] . '</td>';
+                echo '<td>' . $calificacion['nombre_actividad'] . '</td>';
+                echo '<td>'. $calificacion['nombre_usuario']. ' ' . $calificacion["apellidos"] . '</td>';
+                echo '<td>' . $calificacion['calificacion1'] . '</td>';
+                echo '<td>' . $calificacion['calificacion2'] . '</td>';
+                if ($calificacion['calificacion1'] == "" || $calificacion['calificacion2'] == ""){
+                echo '<td> <button>Calificar</button></td>';
+                }else {
+                    echo '<td> <button>Editar</button></td>'; 
+                }
+                echo '</tr>';
+                }
                 ?>
-                 <td><button>Calificar</button></td>
-            </tr>
+            
         </tbody>
 
 
@@ -69,4 +74,4 @@ include("menu.php")
 </html>
 
 
-<!-- SELECT ejercicio_2.nombre_actividad, calificacion2, cursos.nombre FROM calificaciones INNER JOIN ejercicio_2 ON ejercicios_2=ejercicio_2.id INNER JOIN cursos ON calificaciones.cursos_id=cursos.id WHERE usuarios_id=1; -->
+<!--  -->
