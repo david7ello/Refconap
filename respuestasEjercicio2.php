@@ -20,8 +20,12 @@ $nombre = $_SESSION['nombre'];
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
 
         <script>
+            function sendPDF(){
+
+            }
+
             function genPDF(){
-        html2canvas(document.getElementById('mapaMental')).then(function(canvas){
+            html2canvas(document.getElementById('mapaMental')).then(function(canvas){
             document.body.appendChild(canvas)
             var imgdata = canvas.toDataURL('image/png')
             const tamañoImg = {height:1500, width:200}
@@ -42,9 +46,22 @@ $nombre = $_SESSION['nombre'];
             doc.addImage(imgdata,'PNG', margenHorizontal, margenVertical, anchoImagen, altoImagen)
             doc.save("ejercicio1.pdf")
             document.body.removeChild(canvas)
-        })
+
+            const archivo = new FormData();
+            archivo.append('doc', new Blob([doc.outpout()], {type:"application/pdf"}),'doc.pdf',)
+            fetch('subirPDF.php',
+            {
+                method: 'POST',
+                body: doc
+            })
+            .then((response)=>{
+                console.log(response);
+            })
+            .catch((error)=>{
+                console.log(eror);
+            })
         
-        }
+        })
         </script>
 
     <div class="contenedor">

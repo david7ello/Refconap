@@ -58,9 +58,9 @@ include("menu.php")
                 echo '<td>' . $calificacion['calificacion1'] . '</td>';
                 echo '<td>' . $calificacion['calificacion2'] . '</td>';
                 if ($calificacion['calificacion1'] == "" || $calificacion['calificacion2'] == ""){
-                echo '<td> <button>Calificar</button></td>';
+                echo '<td><a href="calificar.php?participante='.$calificacion['nombre_usuario']. '&nombre_actividad='.$calificacion['nombre_actividad'].'&curso='.$calificacion['nombre'].'">Calificar</a></td>';
                 }else {
-                    echo '<td> <button>Editar</button></td>'; 
+                    echo '<td><a href="">Editar</a></td>'; 
                 }
                 echo '</tr>';
                 }
