@@ -101,8 +101,8 @@ if ($password == "" or $correo == "" or $captcha == "") {
 			$_SESSION['tipo_usuario_inicio'] = 'OK';
 			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
-			$_SESSION['nombre'] = $row["nombre"];
-			$_SESSION['password'] = $password;
+			$_SESSION['nombre'] = $row['nombre'];
+			
 			header("Location:sistema.php");
 		} else {
 			$_SESSION['error_session'] = "Clave de Instructor y/o Contrase&ntilde;a  Incorrecta.";

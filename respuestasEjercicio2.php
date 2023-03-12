@@ -44,24 +44,33 @@ $nombre = $_SESSION['nombre'];
             const margenVertical = (altoPagina - altoImagen)/2;
 
             doc.addImage(imgdata,'PNG', margenHorizontal, margenVertical, anchoImagen, altoImagen)
-            doc.save("ejercicio1.pdf")
-            document.body.removeChild(canvas)
+            
+            var pdfDoc = doc.output("blob");
+            
+            var formData = new FormData();
 
-            const archivo = new FormData();
-            archivo.append('doc', new Blob([doc.outpout()], {type:"application/pdf"}),'doc.pdf',)
-            fetch('subirPDF.php',
-            {
+            formData.append('archivo', pdfDoc, 'ejericio2.pdf');
+
+            // const archivo = new FormData();
+            // archivo.append('doc', new Blob([doc.outpout()], {type:"application/pdf"}),'doc.pdf',)
+            fetch('subirPDF.php', {
                 method: 'POST',
-                body: doc
+                body: formData
             })
-            .then((response)=>{
-                console.log(response);
+            .then(response=>response.json())
+            .then(data=>{console.log(data)
+            if(data.mensaje==="Error: Ya resolviste esta actividad"){
+                alert("Actividad ya realizada");
+            }else {
+                doc.save("ejercicio2.pdf")
+            }
             })
-            .catch((error)=>{
-                console.log(eror);
-            })
-        
+            .catch(error=>console.log(eror));
+            
+            document.body.removeChild(canvas)
+            
         })
+    }
         </script>
 
     <div class="contenedor">

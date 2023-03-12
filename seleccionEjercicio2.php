@@ -7,6 +7,10 @@ include("menu.php");
 $idUsuario = $_SESSION['id_user'];
 $queryCursos = "SELECT curso_id FROM lista_cursos WHERE user_id=$idUsuario";
 $cursos = mysqli_query($link, $queryCursos);
+if($curso->num_rows==0){
+    echo '<pre> Aún no tienes actividades asignadas </pre>';
+    $actividades="";
+}else {
 $dataCurso = mysqli_fetch_row($cursos);
 $rol = $_SESSION['tipo'];
 if($rol==1){
@@ -17,6 +21,7 @@ if($rol==1){
 }
 $actividades = mysqli_query($link, $queryActividades);
 
+}
 
 ?>
 
@@ -27,7 +32,7 @@ $actividades = mysqli_query($link, $queryActividades);
 
 <div>
     <h1>
-        <?php echo $_SESSION["nombre"]?> estas son tus actividades
+        <?php echo $_SESSION["nombre"].'estas son tus actividades'?> 
     </h1>
 
 
@@ -44,6 +49,7 @@ $actividades = mysqli_query($link, $queryActividades);
 	
     
         <?php
+            if(($actividades !="")){
 				while ($fila = $actividades->fetch_assoc()) { //ciclo para recorrido de las filas
 					$idInstructor = $fila["instructor"];
                     $queryInstructor = "SELECT nombre, apellidos FROM usuarios WHERE id_user=$idInstructor;";
@@ -56,10 +62,10 @@ $actividades = mysqli_query($link, $queryActividades);
                     <td>" . $nombreInstructorCompleto . "</td>
                     <td>" . "<form method='POST'>
 		            <a href='resolverEjercicio2.php?nombre_actividad=" . $fila["nombre_actividad"] . "'><button type='button' class='btn btn-default boton_color'>Resolver</button></a>
-
-		</form>" . "</td>
-    	</tr>";
+		            </form>" . "</td>
+    	            </tr>";
 				}
+            }
 				?>
 			</tbody>
 		</table>
