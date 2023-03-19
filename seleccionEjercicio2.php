@@ -7,7 +7,7 @@ include("menu.php");
 $idUsuario = $_SESSION['id_user'];
 $queryCursos = "SELECT curso_id FROM lista_cursos WHERE user_id=$idUsuario";
 $cursos = mysqli_query($link, $queryCursos);
-if($curso->num_rows==0){
+if($cursos->num_rows==0){
     echo '<pre> Aún no tienes actividades asignadas </pre>';
     $actividades="";
 }else {

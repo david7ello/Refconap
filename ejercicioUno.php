@@ -3,6 +3,12 @@ include("valida_pagina.php");
 
 $queryAdmin = "SELECT * FROM usuarios";
 $administradores =  mysqli_query($link, $queryAdmin);
+$id = $_SESSION['id_user'];
+$queryActividad = "SELECT `pdf_1`, `fecha_alta_pdf_1` FROM `registro_calificaciones` WHERE `users_id`=$id;";
+$result = mysqli_query($link, $queryActividad);
+
+$data = mysqli_fetch_row($result);
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,6 +20,46 @@ include("head.php");
 
 
 <body>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
+
+    <script src="ejerUno.js"></script>
+    <script type="text/javascript">
+
+        function genPDF(){
+        html2canvas(document.getElementById('pantalla1')).then(function(canvas){
+            document.body.appendChild(canvas)
+            var imgdata = canvas.toDataURL('image/png')
+            const tamañoImg = {height:1500, width:200}
+            const doc = new jsPDF()
+            doc.addImage(imgdata,'PNG',0,0, tamañoImg.width,tamañoImg.height)
+
+            let pdfDoc = doc.output("blob");
+            let formData = new FormData();
+            formData.append('archivo', pdfDoc, 'ejercicio1.pdf');
+
+            fetch('subirPDF.php', {
+                method:'POST',
+                body:formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+
+            doc.save("ejercicio1.pdf")
+            document.body.removeChild(canvas)
+        })  
+        }
+    </script>
+
+
     <script>
         function allowDrop(e) {
             e.preventDefault();
@@ -31,6 +77,8 @@ include("head.php");
     </script>
     <?php
     include("menu.php");
+
+    if ($data == null || $data[0] == null){
     ?>
 
     <button class="btn-flotante" onclick="genPDF()" >Generar Pdf</button>
@@ -181,27 +229,13 @@ include("head.php");
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
-
-    <script src="ejerUno.js"></script>
-    <script type="text/javascript">
-
-        function genPDF(){
-        html2canvas(document.getElementById('pantalla1')).then(function(canvas){
-            document.body.appendChild(canvas)
-            var imgdata = canvas.toDataURL('image/png')
-            const tamañoImg = {height:1500, width:200}
-            const doc = new jsPDF()
-            doc.addImage(imgdata,'PNG',0,0, tamañoImg.width,tamañoImg.height)
-            doc.save("ejercicio1.pdf")
-            document.body.removeChild(canvas)
-        })
-        
+    
+        <?php
+        }else{
+            echo '<pre> Esta actividad se resolvio el: ' .$data[1].'</prev>';    
         }
+        ?>
 
-    </script>
 
 </body>
 

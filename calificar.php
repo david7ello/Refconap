@@ -9,13 +9,27 @@ $actividad_2 = $_GET["nombre_actividad_2"];
 $id=$_GET["id"];
 $calificacion1=$_GET["calificacion1"];
 $calificacion2=$_GET["calificacion2"];
+$queryArchivos = "SELECT `pdf_1`, `pdf_2` FROM `registro_calificaciones` WHERE `users_id`=$id;"; 
+$result = mysqli_query($link, $queryArchivos);
+$archivos = mysqli_fetch_row($result);
 
+if ($archivos != null){
+    $pdf1 = $archivos[0];
+    $pdf2 = $archivos[1];
+}else{
+    $pdf1 = null;
+    $pdf2 = null;
+}
 ?>
 
 
-
 <body>
-     <h1>Este es el PDF</h1>
+     <h1></h1>
+     <?php
+     if ($pdf1 != null){
+        echo '<iframe src="'.$pdf1.'" class="pdf">'.'</iframe>';
+     ?>
+
     <h2>Nombre del participante:</h2>
     <?php echo $participante ?>
     <h2>Curso:</h2>
@@ -36,7 +50,17 @@ $calificacion2=$_GET["calificacion2"];
         <input type="submit" name="guardarCalificacionE1"/>
     </form>
 
-    <h1>Este es el PDF</h1>
+    <?php }else{
+        echo '<pre> EJERCICIO 1 PENDIENTE POR RESOLVER </pre>';
+    }   
+    ?>
+
+    <h1></h1>
+        <?php
+        if ($pdf2 != null){
+        echo '<iframe src="'.$pdf2.'" class="pdf">'.'</iframe>';
+        ?>
+
     <h2>Nombre del participante:</h2>
     <?php echo $participante ?>
     <h2>Curso:</h2>
@@ -50,7 +74,7 @@ $calificacion2=$_GET["calificacion2"];
         <?php
         echo '<input type= "number" name="calificacionEjercicio2" required max="10" min="0" ';
         if ($calificacion2 != null) {
-            echo 'placeholder="'.$calificacion2 . '"';
+            echo 'placeholder="'.$calificacion2 .'"';
         }
         echo '/>';
         echo '<input name="id_usuario" hidden value="'.$id.'"/>';
@@ -58,5 +82,10 @@ $calificacion2=$_GET["calificacion2"];
         ?>
         <input type="submit" name="guardarCalificacionE2"/>
     </form>
+    <?php }else{
+        echo '<pre> EJERCICIO 2 PENDIENTE POR RESOLVER </pre>';
+    }   
+    ?>
+
 
 </body>

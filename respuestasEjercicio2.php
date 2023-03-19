@@ -57,7 +57,7 @@ $nombre = $_SESSION['nombre'];
                 method: 'POST',
                 body: formData
             })
-            .then(response=>response.json())
+            .then(response=>response.text())
             .then(data=>{console.log(data)
             if(data.mensaje==="Error: Ya resolviste esta actividad"){
                 alert("Actividad ya realizada");
@@ -65,7 +65,7 @@ $nombre = $_SESSION['nombre'];
                 doc.save("ejercicio2.pdf")
             }
             })
-            .catch(error=>console.log(eror));
+            .catch(error=>console.log(error));
             
             document.body.removeChild(canvas)
             
