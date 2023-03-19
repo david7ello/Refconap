@@ -19,6 +19,25 @@ include("menu.php")
 ?>
 
 <body>
+
+<?php
+    if (empty($_GET["success"])){
+
+    }else{
+        echo '<br/>';
+        echo '<div class="form-group has-feedback" style="width:450px;">';
+        echo '<div class="alert alert-success">';
+        echo '<button class="close" data-dismiss="alert"><span>&times;</span></button>';
+        echo $_GET["success"];
+        echo '</div><br />';
+        echo '</div>';
+    }
+    ?>
+
+
+
+
+
     <table>
         <thead>
            <tr>
@@ -62,14 +81,21 @@ include("menu.php")
                 echo '<td>' . $calificacion['calificacion1'] . '</td>';
                 echo '<td>' . $calificacion['calificacion2'] . '</td>';
                 if ($calificacion['calificacion1'] == "" || $calificacion['calificacion2'] == ""){
-                echo '<td><a href="calificar.php?'
+                    echo '<td><a href="calificar.php?'
                     .'participante='.$calificacion['nombre_usuario']
                     .'&nombre_actividad_1='.$calificacion['nombre_actividad_1']
                     .'&nombre_actividad_2='.$calificacion['nombre_actividad_2']
                     .'&curso='.$calificacion['nombre']
                     .'&id='.$calificacion['id_user'].'">Calificar</a></td>';
                 }else {
-                    echo '<td><a href="">Editar</a></td>'; 
+                    echo '<td><a href="calificar.php?'
+                    .'participante='.$calificacion['nombre_usuario']
+                    .'&nombre_actividad_1='.$calificacion['nombre_actividad_1']
+                    .'&nombre_actividad_2='.$calificacion['nombre_actividad_2']
+                    .'&curso='.$calificacion['nombre']
+                    .'&calificacion1='.calificacion['calificacion1']
+                    .'&calificacion2='.calificacion['calificacion2']
+                    .'&id='.$calificacion['id_user'].'">Editar</a></td>'; 
                 }
                 echo '</tr>';
                 }
