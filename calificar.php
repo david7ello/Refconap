@@ -26,8 +26,8 @@ $calificacion2=$_GET["calificacion2"];
         <label>Escribe la calificación</label>
         <?php
         echo '<input type= "number" name="calificacionEjercicio1" required max="10" min="0" ';
-        if ($calificacion1!=null){
-            echo 'placeholder="'.calificacion1 . '"';
+        if ($calificacion1 != null) {
+            echo 'placeholder="'.$calificacion1 . '"';
         }
         echo '/>';
         echo '<input name="id_usuario" hidden value="'.$id.'"/>';
@@ -42,11 +42,17 @@ $calificacion2=$_GET["calificacion2"];
     <h2>Curso:</h2>
     <?php echo $curso ?>
     <h2>Nombre de la actividad 2:</h2>
-    <?php echo $actividad_1 ?>
+    <?php echo $actividad_2 ?>
     <form method="post" enctype="multipart/form-data" action="subirCalificacion.php"> 
         <label>Escribe la calificación</label>
-        <input type= "number" name="calificacionEjercicio2" required max="10" min="0"/>
+
+        
         <?php
+        echo '<input type= "number" name="calificacionEjercicio2" required max="10" min="0" ';
+        if ($calificacion2 != null) {
+            echo 'placeholder="'.$calificacion2 . '"';
+        }
+        echo '/>';
         echo '<input name="id_usuario" hidden value="'.$id.'"/>';
         echo '<input name="nombre_curso" hidden value="'.$curso.'"/>';
         ?>

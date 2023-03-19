@@ -93,8 +93,8 @@ include("menu.php")
                     .'&nombre_actividad_1='.$calificacion['nombre_actividad_1']
                     .'&nombre_actividad_2='.$calificacion['nombre_actividad_2']
                     .'&curso='.$calificacion['nombre']
-                    .'&calificacion1='.calificacion['calificacion1']
-                    .'&calificacion2='.calificacion['calificacion2']
+                    .'&calificacion1='.$calificacion['calificacion1']
+                    .'&calificacion2='.$calificacion['calificacion2']
                     .'&id='.$calificacion['id_user'].'">Editar</a></td>'; 
                 }
                 echo '</tr>';
