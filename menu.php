@@ -38,7 +38,8 @@ if ($_SESSION['tipo'] == 1) {
                                 </ul>
                             </li>
 
-
+                            <li class="dropdown"><a class="dropdown-toggle" href="evaluarActividad.php">EVALUAR ACTIVIDADES</a>
+                            </li>
 
                         </ul>
 

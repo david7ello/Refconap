@@ -6,7 +6,7 @@
 
 .ejerUno {
     display: flex;
-    width: 100vw;
+    width: 100 vw;
     height: 100 vh;
     flex-flow: column;
 }

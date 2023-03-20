@@ -22,12 +22,17 @@ if ($archivos != null){
 }
 ?>
 
+<head>
+<link rel="stylesheet" href="./css/evaluar.css"/> 
+</head>
 
 <body>
-     <h1></h1>
+    <div class="contenedor">
+        <div class="columna1">
+
      <?php
      if ($pdf1 != null){
-        echo '<iframe src="'.$pdf1.'" class="pdf">'.'</iframe>';
+        echo '<iframe class="pdf" src="'.$pdf1.'">'.'</iframe>';
      ?>
 
     <h2>Nombre del participante:</h2>
@@ -55,7 +60,10 @@ if ($archivos != null){
     }   
     ?>
 
-    <h1></h1>
+    </div class>
+
+    <div class="columna2">
+
         <?php
         if ($pdf2 != null){
         echo '<iframe src="'.$pdf2.'" class="pdf">'.'</iframe>';
@@ -86,6 +94,7 @@ if ($archivos != null){
         echo '<pre> EJERCICIO 2 PENDIENTE POR RESOLVER </pre>';
     }   
     ?>
-
+    </div>
+</div>
 
 </body>

@@ -204,6 +204,19 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 			$id_user = $id_user['id_user'];
 			$query = "INSERT INTO lista_cursos(curso_id, user_id) VALUES ($idCurso,$id_user)";
 			$result_id = mysqli_query($link, $query);
+			
+			$query = "SELECT id FROM ejercicio_1 WHERE cursos_id=$idCurso";
+			$result_e1 = mysqli_query($link, $query);
+			$idE1 = mysqli_fetch_array($result_e1);
+			$idE1 = $idE1['id'];
+
+			$query = "SELECT id FROM ejercicio_2 WHERE cursos_id=$idCurso";
+			$result_e2 = mysqli_query($link, $query);
+			$idE2 = mysqli_fetch_array($result_e1);
+			$idE2 = $idE2['id'];
+
+			$query ="INSERT INTO calificaciones (usuarios_id, cursos_id) VALUES ($id_user, $idCurso)";
+			$result_calificaciones = mysqli_query($link, $query);
 		}
 		
 

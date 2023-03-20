@@ -32,9 +32,17 @@ include("head.php");
         html2canvas(document.getElementById('pantalla1')).then(function(canvas){
             document.body.appendChild(canvas)
             var imgdata = canvas.toDataURL('image/png')
-            const tamañoImg = {height:1500, width:200}
-            const doc = new jsPDF()
-            doc.addImage(imgdata,'PNG',0,0, tamañoImg.width,tamañoImg.height)
+            const tamañoImg = {
+                                height:830, 
+                                width:279
+                                }
+            const doc = new jsPDF({
+                orientation: "p", format: "a2"
+            })
+
+            const margenHorizontal = 100
+
+            doc.addImage(imgdata,'PNG',margenHorizontal,0,tamañoImg.width,tamañoImg.height,'', "FAST")
 
             let pdfDoc = doc.output("blob");
             let formData = new FormData();
@@ -51,7 +59,6 @@ include("head.php");
             .catch(error => {
                 console.log(error)
             })
-
 
             doc.save("ejercicio1.pdf")
             document.body.removeChild(canvas)

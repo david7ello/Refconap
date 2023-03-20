@@ -23,8 +23,7 @@ include("head.php")
                 <?php
                 if ($_SESSION['tipo'] == 1 or $_SESSION['tipo']==2) {
                 ?>
-                <a href="altaEjercicio2.php">ALTA ACTIVIDAD</a> 
-                <a href="evaluarActividad.php">EVALUAR ACTIVIDAD</a> 
+                <a href="altaEjercicio2.php">ALTA ACTIVIDAD</a>  
                 <?php
                 }
                 ?> 
