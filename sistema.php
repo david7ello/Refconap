@@ -21,6 +21,11 @@ include("menu.php")
 	<img style="margin-top:-32px;" src="images/REFCONAP.png" width="15%" height="15%">
 	
 </div>
+
+<div class="imgCuadros">
+
+</div>
+
 <div align="center">
 	<div class="col-md-2 text-center"></div>
 	<div class="col-md-8 text-center" >

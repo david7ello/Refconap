@@ -35,9 +35,7 @@ include("menu.php")
     ?>
 
 
-
-
-
+<div align="center">
     <table>
         <thead>
            <tr>
@@ -102,9 +100,10 @@ include("menu.php")
                 ?>
             
         </tbody>
-
-
     </table>
+
+</div>
+
 </body>
 </html>
 

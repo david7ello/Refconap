@@ -138,7 +138,7 @@ include ("head.php");
 		</div>
 	</div>
 
-	<div>
+	<div align="center">
 		<table>
 			<thead>
 				<tr>

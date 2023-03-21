@@ -32,7 +32,7 @@ $actividades = mysqli_query($link, $queryActividades);
 
 <div>
     <h1>
-        <?php echo $_SESSION["nombre"].'estas son tus actividades'?> 
+        <?php echo $_SESSION["nombre"].' estas son tus actividades'?> 
     </h1>
 
 
