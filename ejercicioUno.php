@@ -52,7 +52,7 @@ include("head.php");
                 method:'POST',
                 body:formData,
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(data => {
                 console.log(data)
             })

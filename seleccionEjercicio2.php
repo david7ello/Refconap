@@ -5,23 +5,28 @@ include("head.php");
 include("menu.php");
 
 $idUsuario = $_SESSION['id_user'];
-$queryCursos = "SELECT curso_id FROM lista_cursos WHERE user_id=$idUsuario";
-$cursos = mysqli_query($link, $queryCursos);
-if($cursos->num_rows==0){
-    echo '<pre> Aún no tienes actividades asignadas </pre>';
-    $actividades="";
-}else {
-$dataCurso = mysqli_fetch_row($cursos);
+
 $rol = $_SESSION['tipo'];
 if($rol==1){
     $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id = cursos.id)";
+    $actividades = mysqli_query($link, $queryActividades);
 } else {
-    $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id=cursos.id) WHERE cursos_id=$dataCurso[0]";
     
+    $queryCursos = "SELECT curso_id FROM lista_cursos WHERE user_id=$idUsuario";
+    $cursos = mysqli_query($link, $queryCursos);
+    if($cursos->num_rows==0){
+    echo '<pre> Aún no tienes actividades asignadas </pre>';
+    $actividades="";
+
+    }else {
+        $dataCurso = mysqli_fetch_row($cursos);
+        $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id=cursos.id) WHERE cursos_id=$dataCurso[0]";
+        $actividades = mysqli_query($link, $queryActividades);
+    }
 }
+
 $actividades = mysqli_query($link, $queryActividades);
 
-}
 
 ?>
 
