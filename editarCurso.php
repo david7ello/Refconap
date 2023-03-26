@@ -1,7 +1,8 @@
 <?php
 include("valida_pagina.php");
+$id_curso = $_GET['id_curso'];
 
-$queryCurso = "SELECT id, nombre, fecha_inicio, fecha_final, duracion, instructor FROM cursos WHERE id=" .$_GET['id_curso'];
+$queryCurso = "SELECT id, nombre, fecha_inicio, fecha_final, duracion, instructor, horas_dia, hora_inicio, hora_fin FROM cursos WHERE id=" .$id_curso;
 $cursoDB = mysqli_query($link, $queryCurso);
 
 $curso = mysqli_fetch_array($cursoDB);
@@ -11,8 +12,10 @@ $fecha_inicio = $curso['fecha_inicio'];
 $fecha_final = $curso['fecha_final'];
 $duracion = $curso['duracion'];
 $instructor = $curso['instructor'];
-$id_curso = $_GET['id_curso'];
-
+$horas_dia = $curso['horas_dia'];
+$hora_incio = $curso['hora_inicio'];
+$hora_fin = $curso['hora_fin'];
+ 
 
 $queryInstructores = "SELECT `id_user`, `nombre`, `apellidos` FROM `usuarios` WHERE roles=2";
 $instructores = mysqli_query($link, $queryInstructores);
@@ -53,18 +56,36 @@ include("menu.php");
 					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Fecha de inicio</label>
-							<input type="date" class="form-control" id="fecha_inicio_editar" name="fecha_inicio_editar" placeholder="" value="<?php echo $fecha_inicio ?>">
+							<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio_editar" placeholder="" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?> value="<?php echo $fecha_inicio;?>">
 						</div>
 						<div class="form-group col-md-6">
 							<label for="inputEmail4"> Fecha de término</label>
-							<input type="date" class="form-control" id="fecha_termino_editar" name="fecha_termino_editar" placeholder="" value="<?php echo $fecha_final ?>">
+							<input type="date" class="form-control" id="fecha_termino" name="fecha_termino_editar" value="<?php echo $fecha_final;?>" placeholder="" required min=<?php $hoy=date("Y-m-d"); echo $hoy;?>>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="form-group col-md-2">
 							<label for="inputEmail4">Duración</label>
-							<input type="Integer" class="form-control" id="duracion_curso_editar" name="duracion_curso_editar" placeholder="¿? horas" value="<?php echo $duracion ?>">
+							<input type="number" class="form-control" id="duracion_curso" name="duracion_curso_editar" placeholder="8 minimo" min="8" max="240" required value="<?php echo $duracion;?>">
+						</div>
+
+						<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horas al día</label>
+							<input onblur="calcularHoraFin(event)" type="number" class="form-control" id="horas_al_dia_curso" name="horas_dia_editar" placeholder="1 minimo" min="1" max="24" required value="<?php echo $horas_dia;?>">
+						</div>
+					
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horario inicio</label>
+							<input onblur="calcularHoraFin(event)" type="time" class="form-control" id="horario_inicio_curso" name="horario_inicio_editar" placeholder="" required value="<?php echo $hora_incio;?>">
+						</div>
+					
+					<div class="row">
+						<div class="form-group col-md-3">
+							<label for="inputEmail4">Horario termino</label>
+							<input type="time" class="form-control" id="horario_fin_curso" name="horario_fin_editar" placeholder="" required value="<?php echo $hora_fin;?>">
 						</div>
 
 						<div class="form-group col-md-6">
@@ -96,6 +117,30 @@ include("menu.php");
 							<path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082z" />
 						</svg> </span>Regresar
 					</button>
+
+					<?PHP
+				if (empty($_GET["success"]) ) {} else{
+					echo '<br/>';
+					echo '<div class="form-group has-feedback" style="width:450px;">';
+					echo '<div class="alert alert-success">';
+					echo '<button class="close" data-dismiss="alert"><span>&times;</span></button>';
+					echo $_GET["success"];
+					echo '</div><br />';
+					echo '</div>';
+				}
+				?>
+
+				<?PHP
+				if (empty($_GET["error"]) ){}else {
+					echo '<br/>';
+					echo '<div class="form-group has-feedback" style="width:450px;">';
+					echo '<div class="alert alert-danger">';
+					echo '<button class="close" data-dismiss="alert"><span>&times;</span></button>';
+					echo $_GET["error"];
+					echo '</div><br />';
+					echo '</div>';
+				}
+				?>
 
 				</form>
 			</div>

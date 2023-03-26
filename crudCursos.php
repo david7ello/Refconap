@@ -13,14 +13,14 @@ if (isset($_POST["btn_registrarCurso"])) {
     $horasAlDia = $_POST["horas_al_dia_curso"];
     $horarioInicio = $_POST["horario_inicio_curso"];
     $horarioTermino = $_POST["horario_fin_curso"];
-    $instructorAsignado = $_POST["select"];
+    // $instructorAsignado = $_POST["select"];
     $duracionCursoInt = (int)$duracionCurso;
     $horasAlDiaInt = (int)$horasAlDia;
     $nameValidate = false;
     $fechaInicioValidate = false;
     $fechaTerminoValidate = false;
     $duracionValidate = false;
-    $instructorValidate = false;
+    // $instructorValidate = false;
     $horasAlDiaValidate = false;
     $horarioValidate = false;
 
@@ -61,13 +61,13 @@ if (isset($_POST["btn_registrarCurso"])) {
         echo "La duración está en un formato correcto";
     }
 
-    if ($instructorAsignado != '') {
-        $instructorValidate = true;
-        echo "Correcto";
-    } else {
-        $instructorValidate = false;
-        echo "Falta instructor";
-    }
+    // if ($instructorAsignado != '') {
+    //     $instructorValidate = true;
+    //     echo "Correcto";
+    // } else {
+    //     $instructorValidate = false;
+    //     echo "Falta instructor";
+    // }
 
     if ($horasAlDia <= 24){
         $horasAlDiaValidate = true;
@@ -91,6 +91,10 @@ if (isset($_POST["btn_actualizarCurso"])) {
     $duracionCurso = $_POST["duracion_curso_editar"];
     $instructorAsignado = $_POST["select"];
     $id_curso = $_POST["id_curso_editar"];
+    $horasAlDia = $_POST["horas_dia_editar"];
+    $horarioInicio = $_POST["horario_inicio_editar"];
+    $horarioTermino = $_POST["horario_fin_editar"];
+   
 }
 
 if (isset($_GET["id_eliminar_curso"])) {
@@ -101,10 +105,21 @@ if (isset($_GET["id_eliminar_curso"])) {
 switch ($actvandoBtn) {
 
     case "Registrar":
-        if ($nameValidate && $fechaInicioValidate && $fechaTerminoValidate && $duracionValidate && $instructorValidate && $horasAlDiaValidate) {
+        if ($nameValidate && $fechaInicioValidate && $fechaTerminoValidate && $duracionValidate && $horasAlDiaValidate) {
 
-            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion,instructor, horas_dia, hora_inicio, hora_fin) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', $instructorAsignado, '$horasAlDia', '$horarioInicio', '$horarioTermino')";
+            $query = "INSERT INTO cursos (id,nombre,fecha_inicio,fecha_final,duracion, horas_dia, hora_inicio, hora_fin) VALUES (NULL, '$nombreCurso', '$fechaInicio', '$fechaTermino', '$duracionCurso', '$horasAlDia', '$horarioInicio', '$horarioTermino')";
             $result = mysqli_query($link, $query); //almacenamos en nuestra variable el resultado de la consulta
+
+            $query = "SELECT id FROM cursos ORDER BY id DESC LIMIT 1";
+            $result_ultimo = mysqli_query($link, $query);
+            $id = mysqli_fetch_array($result_ultimo);
+            $id = $id['id'];
+
+            $query = "INSERT INTO `ejercicio_1`(`nombre_actividad`, `palabras_desordenadas`, `palabras_ordenadas`, `cursos_id`) VALUES ('ejercicio_1', 'uno', 'dos', $id);";
+            $result_ejerUno = mysqli_query($link, $query);
+
+
+            echo $result;
 
             if ($result) {
                 echo '<script language= "javascript"> alert ("El registro se almaceno de forma correcta"); </script>';
@@ -145,33 +160,19 @@ switch ($actvandoBtn) {
 
         break;
     case "Editar":
-        //TODO : Actualizar datos
-        // $nombreCorrecto = false;
-        // $fechaInicioCorrecto = false;
-        // $fechaTerminoCorrecto = false;
-        // $duracionCorrecto = false;
 
-        // if ($nombreCurso != "") {
-        //     $nombreCorrecto = true;
-        // }
-        // if ($fechaInicio != "") {
-        //     $fechaInicioCorrecto = true;
-        // }
-        // if ($fechaTermino != "") {
-        //     $fechaTerminoCorrecto = true;
-        // }
-        // if ($duracionCurso != 0 and $duracion != "") {
-        //     $nombreCorrecto = true;
-        // }
+        //Validar nombre
+        if (!preg_match("|^[a-zñáéíóúA-ZÑÁÉÍÓÚ]+(\s*[a-zñáéíóúA-ZÑÁÉÍÓÚ]*)*[a-zñáéíóúA-ZÑÁÉÍÓÚ]+$|", $nombreCurso)) {
+            $nameValidate = false;
+            //echo "verificar nombre";
+        } else {
+            $nameValidate = true;
+            //echo "El nombre está en un formato valido";
+        }
 
-        // if ($nombreCorrecto == true and $fechaInicioCorrecto == true and $fechaTerminoCorrecto == true and $duracionCorrecto == true) {
-        //     echo '<script language= "javascript"> alert ("Si son correctos"); </script>';
-        // } else {
-        //     echo '<script language= "javascript"> alert ("No son correctos"); </script>';
-        // }
-
-        $query = "UPDATE cursos SET nombre = '$nombreCurso', fecha_inicio = '$fechaInicio', fecha_final = '$fechaTermino', duracion = '$duracionCurso', instructor='$instructorAsignado' WHERE id = $id_curso";
-
+        if ($nameValidate){
+       
+        $query = "UPDATE cursos SET nombre = '$nombreCurso', fecha_inicio = '$fechaInicio', fecha_final = '$fechaTermino', duracion = '$duracionCurso', horas_dia = '$horasAlDia', hora_inicio = '$horarioInicio', hora_fin = '$horarioTermino', instructor= '$instructorAsignado' WHERE id = $id_curso";
         $result = mysqli_query($link, $query);
 
         if ($result) {
@@ -186,9 +187,39 @@ switch ($actvandoBtn) {
         echo $fechaInicio;
         echo $fechaTermino;
         echo $duracionCurso;
-        echo $instructorAsignado;
+        // echo $instructorAsignado;
         echo $id_curso;
 
+
+        }else {
+            $errorMessage = '';
+
+            // if ($nameValidate == '' and $fechaInicioValidate == '' and $fechaTerminoValidate == '' and $duracionValidate == '' and $instructorValidate == '' and $horasAlDiaValidate== '') {
+            //     $errorMessage  = 'Todos los campos son requeridos';
+            // }
+
+            if (!$nameValidate) {
+                $errorMessage = "El nombre no está en un formato valido";
+            }
+
+            // if (!$fechaInicioValidate) {
+            //     $errorMessage = "La fecha de inicio es incorrecta";
+            // }
+
+            // if (!$fechaTerminoValidate) {
+            //     $errorMessage = "La fecha de termino es incorrecta";
+            // }
+
+            // if (!$duracionValidate) {
+            //     $errorMessage = "La duración no debe de ser menor a 8 horas";
+            // }
+
+            // if (!$horasAlDiaValidate) {
+            //     $errorMessage = "Las horas deben ser menores a 24 horas";
+            // }
+
+            header("Location: editarCurso.php?error=" . $errorMessage ." & id_curso=".$id_curso);
+        }
 
         break;
 
@@ -205,8 +236,22 @@ switch ($actvandoBtn) {
         break;
 
     case "Eliminar":
-        $query = "DELETE FROM cursos WHERE id = $id_curso";
+        $query = "DELETE FROM lista_cursos WHERE curso_id = $id_curso";
         $result = mysqli_query($link, $query);
+
+        $query = "DELETE FROM calificaciones WHERE cursos_id = $id_curso";
+        $result = mysqli_query($link, $query);
+
+        $query = "DELETE FROM ejercicio_1 WHERE cursos_id = $id_curso";
+        $result = mysqli_query($link, $query);
+        
+        $query = "DELETE FROM ejercicio_2 WHERE cursos_id = $id_curso";
+        $result = mysqli_query($link, $query);
+        
+      
+
+        $query = "DELETE FROM cursos WHERE id = $id_curso";
+        $result = mysqli_query($link, $query);       
 
         if ($result) {
             echo '<script language= "javascript"> alert ("El Curso se elimino de forma correcta"); </script>';
@@ -222,10 +267,7 @@ switch ($actvandoBtn) {
         break;
 }
 
-// // Consultar la información de la BD
-// $sentSQL = $conectarBD->prepare("SELECT * FROM cursos");
-// $sentSQL->execute();
-// $consultaReg = $sentSQL->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 

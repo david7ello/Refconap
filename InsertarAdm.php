@@ -220,6 +220,12 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 
 			$query = "INSERT INTO registro_calificaciones (users_id) VALUES ($id_user);";
 			$result_registro_cal = mysqli_query($link, $query);
+
+			
+			if ($rol == 'Instructor'){
+			$query = "UPDATE cursos SET instructor=$id_user WHERE id=$idCurso";
+			$result_registro_instructor = mysqli_query($link, $query);
+			}
 		}
 		
 

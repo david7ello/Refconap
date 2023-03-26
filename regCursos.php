@@ -53,7 +53,7 @@ include("head.php")
 	?>
 
 	<div align="center">
-		<div class="div_container" style="width: 700px;">
+		<div class="div_container" style="width: 900px;">
 			<div class="div_container_title" style="height: 35px;">
 				<font class="font_title">REGISTRAR CURSO</font>
 			</div><br>
@@ -101,16 +101,17 @@ include("head.php")
 							<input type="time" class="form-control" id="horario_fin_curso" name="horario_fin_curso" placeholder="" required value="">
 						</div>
 
-						<div class="form-group col-md-6">
+						<!-- <div class="form-group col-md-6">
 							<label for="inputEmail4">Instructor asignado</label>
 							<br />
-							<select name="select">
-								<!-- php for each -->
-								<?php foreach ($instructores as $instructor) { ?>
-									<option value="<?php echo $instructor['id_user'] ?>"><?php echo $instructor['nombre'] ?></option>
-								<?php } ?>
+							<select name="select"> -->
+								<!-- php for each 
+								
+									<option value="</option>
+								
 							</select>
-						</div>
+						</div> -->
+						
 
 						<div class="row">
 							<div class="form-group col-md-12 text-center">
@@ -166,6 +167,9 @@ include("head.php")
 					<th>Fecha Inicio</th>
 					<th>Fecha Final</th>
 					<th>Duracion</th>
+					<th>Horas al día</th>
+					<th>Hora Inicio</th>
+					<th>Hora Termino</th>
 					<th>Instructor</th>
 					<th>Opciones</th>
 				</tr>
@@ -179,6 +183,10 @@ include("head.php")
         <td>" . $fila["fecha_inicio"] . "</td>
         <td>" . $fila["fecha_final"] . "</td>
         <td>" . $fila["duracion"] . "</td>
+        <td>" . $fila["horas_dia"] . "</td>
+        <td>" . $fila["hora_inicio"] . "</td>
+        <td>" . $fila["hora_fin"] . "</td>
+
         <td>" . getInstructor($fila["instructor"]) ."</td>
         <td>" . "<form method='POST'>
 		<a href='editarCurso.php?id_curso=" . $fila["id"] . "'><button type='button' class='btn btn-default boton_color'>Editar</button></a>
