@@ -32,9 +32,9 @@ if ($archivo['error']==UPLOAD_ERR_OK) {
     move_uploaded_file($rutaTemp, $rutaArchivo);
 
     if ($archivo["name"]=="ejercicio1.pdf"){
-        $queryPDF = "UPDATE `registro_calificaciones` SET `pdf_1`='$urlDB' WHERE `users_id`=$id;";
+        $queryPDF = "UPDATE `registro_calificaciones` SET `pdf_1`='$urlDB', `fecha_alta_pdf_1`='$fechaAlta'  WHERE `users_id`=$id;";
     }else{
-        $queryPDF = "UPDATE `registro_calificaciones` SET `pdf_2`='$urlDB' WHERE `users_id`=$id;";
+        $queryPDF = "UPDATE `registro_calificaciones` SET `pdf_2`='$urlDB', `fecha_alta_pdf_2`='$fechaAlta' WHERE `users_id`=$id;";
     }
     $result = mysqli_query($link, $queryPDF);
 

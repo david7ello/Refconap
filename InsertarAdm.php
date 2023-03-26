@@ -135,7 +135,25 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 	date_default_timezone_set('America/Mexico_City');
 	$fecha_alta = date('y-m-d');
 	$idCurso=$_POST['curso'];
-	//$fecha = $_POST['fecha'];
+	
+	$queryCorreos = "SELECT correo FROM usuarios WHERE correo='".$correo."';";
+	$resultCorreos = mysqli_query($link, $queryCorreos);
+	$correos = mysqli_fetch_array($resultCorreos);
+
+	$query = "SELECT id FROM ejercicio_1 WHERE cursos_id=$idCurso";
+	$result_e1 = mysqli_query($link, $query);
+	$idE1 = mysqli_fetch_array($result_e1);
+	
+
+	$query = "SELECT id FROM ejercicio_2 WHERE cursos_id=$idCurso";
+	$result_e2 = mysqli_query($link, $query);
+	$idE2 = mysqli_fetch_array($result_e2);
+	
+
+	$validarActividades = true;
+	if(empty($idE1) or empty($idE2)){
+		$validarActividades = false;
+	}
 
 	$nombreValidate = false;
 	$apellidosAdmValidate = false;
@@ -186,12 +204,17 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
         $correoValidate = false;
         //echo "verificar correo";
    } else {
-		$correoValidate = true;
+		if (empty($correos)){
+			$correoValidate = true;
+		}else{
+			$correoValidate = false;
+		}
         //echo "El correo está en un formato valido";
     }
 
+	
 
-	if ($nombreValidate && $apellidosAdmValidate && $contraseniaValidate && $celularValidate && $correoValidate && $rolValidate){
+	if ($nombreValidate && $validarActividades && $apellidosAdmValidate && $contraseniaValidate && $celularValidate && $correoValidate && $rolValidate){
 		// Consulta para realizar el ingreso de información
 		$query = "INSERT INTO usuarios (nombre,apellidos,password,correo,celular,estatus,roles,fecha_alta, fecha_baja)
 		VALUES ('".$nombre."', '".$apellidosAdm."', '".$contrasenia."', '".$correo."', '".$celular."', 'A', '".$rol."', '".$fecha_alta."','".NULL."')";
@@ -213,7 +236,7 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 			$query = "SELECT id FROM ejercicio_2 WHERE cursos_id=$idCurso";
 			$result_e2 = mysqli_query($link, $query);
 			$idE2 = mysqli_fetch_array($result_e2);
-			$idE2 = $idE2['id'][0];
+			$idE2 = $idE2['id'];
 
 			$query ="INSERT INTO calificaciones (usuarios_id, cursos_id, ejercicio_1, ejercicios_2) VALUES ($id_user, $idCurso, $idE1, $idE2)";
 			$result_calificaciones = mysqli_query($link, $query);
@@ -241,10 +264,13 @@ if (isset($_POST["btn_guardar"]) and $_POST["btn_guardar"]== "guardar"){
 			}elseif(!$celularValidate){
 				$errorMessage="El celular es obligatorio";
 			}elseif(!$correoValidate){
-				$errorMessage="El correo es obligatorio";
+				$errorMessage="El correo es obligatorio o esta repetido";
 			}elseif(!$rolValidate){
 				$errorMessage="El rol es obligatorio";
+			}elseif(!$validarActividades){
+				$errorMessage="Falta cargar actividades";
 			}
+
 
 			header("Location: AgregarAdm.php?error=$errorMessage");
 		}

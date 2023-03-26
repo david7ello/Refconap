@@ -17,8 +17,6 @@ include("menu.php")
 ?>
 
 
-
-
 <body class="fondo">
 <script type="text/javascript">
     let valorCorrecto = "";
@@ -61,14 +59,27 @@ include("menu.php")
 <?php 
 if(!empty($_GET["sucess"])){
   echo '<br/>';
-  echo '<div class =""> Actividad guardada </div>';
+  
+  
+    echo '<br/>';
+    echo '<div class="form-group has-feedback" style="width:450px;">';
+    echo '<div class="alert alert-success">';
+    echo '<button class="close" data-dismiss="alert"><span>&times;</span></button>';
+    echo '<div class =""> Actividad guardada </div>';
+    echo '</div><br />';
+    echo '</div>';
+  
+  
+  
   echo '<br/>';
 }
 ?>
 
-<form className="appuno" action="imgApi.php" method="post" enctype="multipart/form-data">
-      <h2>Alta de ejercicio 2</h2>
-      <h2>Busca el curso</h2>
+<div class="titulo">Alta de ejercicio #2</div>
+      
+
+<form class="altaEjer2" action="imgApi.php" method="post" enctype="multipart/form-data">
+      <div class="centro">
       <label>Elige el curso:</label>
       <input list="lista" name="curso" id="seleccionCurso" required/>
         <?php
@@ -79,22 +90,34 @@ if(!empty($_GET["sucess"])){
             echo "</datalist>";
         ?>
 
-
-      <h2>Escribe el nombre de la actividad</h2>
+      <label>Escribe el nombre de la actividad</label>
       <input id="actividad" name="actividad" type="text" required/>
+      </div>
 
-      <?php include('altaPregunta1Ejercicio2.php');
+            <?php 
+            echo '<div>';
+            include('altaPregunta1Ejercicio2.php');
+            echo '</div>';
+            
+            echo '<div>';
             include('altaPregunta2Ejercicio2.php');
-            include('altaPregunta3Ejercicio2.php');
-            include('altaPregunta4Ejercicio2.php')
-            ?>
+            echo '</div>';
 
+            echo '<div>';
+            include('altaPregunta3Ejercicio2.php');
+            echo '</div>';
+
+            echo '<div>';
+            include('altaPregunta4Ejercicio2.php');
+            echo '</div>';
+            ?>
+      
       <div>
         <a class="btn btn-danger" href="ejercicioDos.php">Cancelar
         </a>
         <input class="btn btn-sucess" type="submit" name="btn_guardarPregunta"></input>
-
-      </div>
+        </div>
+      
 </form>
   
 

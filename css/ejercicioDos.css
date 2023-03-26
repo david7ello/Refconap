@@ -9,20 +9,21 @@
 
 .menuEjeDos ul a {
     width: 300px;
+    
     margin-right: 20px;
-    margin-left: 500px;
-    /* margin-bottom: 10px; */
+    margin-left: 600px;
     position: relative;
-    padding-top: 3em;
-        font-size: 16px;
+    font-size: 16px;
     text-decoration: none;
     display: block;
-    /* align-items: center; */
     border-radius: 20px;
     text-align:center;
+    padding: 1em;
     
-    
-    
+}
+
+.menuEjeDos ul {
+    margin-top: 100px;
 }
 
 .menuEjeDos ul a:hover {
@@ -53,3 +54,50 @@
     color: black; 
     background-color: rgb(217, 217, 214, .5);
   }
+
+  .altaEjer2{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin-top: 50px;
+    font-size: larger;
+    gap: 60px;
+  }
+
+  .centro {
+    grid-column: span 2;
+  }
+
+  .titulo {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: darkblue;
+  }
+
+  .escribe {
+    display: flex;
+    justify-items: start;
+    justify-content: space-evenly;
+  }
+
+  .inputs input[type="file"] {
+    /* display: inline-block; */
+    /* position: relative; */
+    /* width: 40px; */
+    display: none;
+  }
+
+.btnSeleccionar {
+    border: 1px solid black;
+    display: inline-block;
+    cursor: pointer;
+    padding: 6px 12px;
+    font-weight: normal;
+    font-size: small;
+}
+
+.inputs img {
+    width: 80px;
+}
+

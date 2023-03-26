@@ -71,20 +71,24 @@ $_SESSION['curso'] = $curso;
     </script>
 
     <form method="post" enctype="multipart/form-data" action="respuestasEjercicio2.php">
-        <div>
-            <h1>Nombre del ejercicio:</h1>
+        <div class="container">
+            <div class="row">
+            <div class="col col-4">Nombre del ejercicio:</div>
             <?php
                 echo $actividad;
             ?>
-            <h2>Nombre del participante:</h2>
+            <div class="col col-4">Nombre del participante:</div>
             <?php
                 echo $nombre;
             ?>
-            <h2>Nombre del curso:</h2>
+            <div class="col col-4">Nombre del curso:</div>
             <?php
                 echo $curso;
             ?>
 
+            </div>
+
+            </div>
             <h2>Nombre del instructor:</h2>
             <?php
                 echo $nombreInstructor;
@@ -95,6 +99,7 @@ $_SESSION['curso'] = $curso;
                     01:00
                 </span>min
             </h3>
+
 
             <?php
             while($pregunta = $preguntas->fetch_assoc()){
