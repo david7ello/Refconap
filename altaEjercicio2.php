@@ -121,12 +121,4 @@ if(!empty($_GET["sucess"])){
 </form>
   
 
-
-
-
-
-
-
-
-
 </body>

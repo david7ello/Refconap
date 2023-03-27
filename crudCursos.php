@@ -175,6 +175,9 @@ switch ($actvandoBtn) {
         $query = "UPDATE cursos SET nombre = '$nombreCurso', fecha_inicio = '$fechaInicio', fecha_final = '$fechaTermino', duracion = '$duracionCurso', horas_dia = '$horasAlDia', hora_inicio = '$horarioInicio', hora_fin = '$horarioTermino', instructor= '$instructorAsignado' WHERE id = $id_curso";
         $result = mysqli_query($link, $query);
 
+        $query = "UPDATE lista_cursos SET curso_id=$id_curso WHERE user_id=$id_user";
+        $result = mysqli_query($link, $query);
+
         if ($result) {
             echo '<script language= "javascript"> alert ("El Curso se actualizo de forma correcta"); </script>';
         } else {

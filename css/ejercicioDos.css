@@ -101,3 +101,30 @@
     width: 80px;
 }
 
+.contenedor1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: large;
+  gap: 10px;
+}
+
+.pregunta {
+  margin-top: 30px;
+}
+
+.titulo1 {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+  color: darkblue;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.botonEj2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  
+}

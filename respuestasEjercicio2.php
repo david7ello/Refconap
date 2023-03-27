@@ -74,13 +74,13 @@ $nombre = $_SESSION['nombre'];
         </script>
 
     <div class="contenedor">
-        <button onclick="genPDF()">Generar PDF</button> 
+        <button class="btn btn-success" onclick="genPDF()">Enviar para calificar</button> 
     </div>
 
     <div class="contenedor">
 
     <div id="mapaMental" class="grid"> <!--Contenedor principal-->
-        <div class="concepto"><label> <?php echo $actividad ?> </label></div>
+        <div class="concepto"><label> <?php echo mb_strtoupper($actividad, 'utf-8')?> </label></div>
 
         <?php
             $i=0;
@@ -108,7 +108,7 @@ $nombre = $_SESSION['nombre'];
             }
         ?>
         <label class="nombre">
-            <?php echo $nombre ?>
+            <?php echo $nombre . ' ' . $_SESSION['apellidos']  ?>
         </label>
     </div>
 </div>

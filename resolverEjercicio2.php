@@ -21,6 +21,7 @@ $curso = $cursoInfo[1];
 $nombreInstructor = $instructorInfo[0] . " " . $instructorInfo[1];
 
 $nombre = $_SESSION["nombre"];
+$apellidos = $_SESSION["apellidos"];
 $_SESSION['actividad'] = $actividad;
 $_SESSION['curso'] = $curso;
 ?>
@@ -71,43 +72,58 @@ $_SESSION['curso'] = $curso;
     </script>
 
     <form method="post" enctype="multipart/form-data" action="respuestasEjercicio2.php">
-        <div class="container">
-            <div class="row">
-            <div class="col col-4">Nombre del ejercicio:</div>
+        <div class="contenedor1">
+            
+            <div class="col col-4" >Nombre actividad:
             <?php
                 echo $actividad;
             ?>
-            <div class="col col-4">Nombre del participante:</div>
+            </div>
+
+            <div class="col col-4">Nombre del participante:
             <?php
-                echo $nombre;
+                echo $nombre . " " . $apellidos;
             ?>
-            <div class="col col-4">Nombre del curso:</div>
+            </div>
+
+            <div class="col col-4">Nombre del curso:
             <?php
                 echo $curso;
             ?>
-
             </div>
-
-            </div>
-            <h2>Nombre del instructor:</h2>
+            
+            <div class="col col-4">Nombre del instructor:
             <?php
                 echo $nombreInstructor;
             ?>
+            </div>
 
-            <h3>Tiempo restante: 
+          </div>
+            
+        <div>
+            <div class="titulo1">Tiempo restante: 
                 <span id="timer">
                     01:00
                 </span>min
-            </h3>
+            
+        </div>
 
+        <div style="font-size:20px;">
+            <p>Selecciona la respuesta correcta de cada reactivo:</p>
+        </div>
+    </div>
+
+
+
+        </div>
 
             <?php
             while($pregunta = $preguntas->fetch_assoc()){
             ?>
                 <label>
                     <?php
-                       echo $pregunta["pregunta"];
-                
+                       echo '<p class="pregunta">Pregunta: '. $pregunta["pregunta"] .'</p>';
+                    
                     ?>
                 </label>
 
@@ -128,19 +144,16 @@ $_SESSION['curso'] = $curso;
 
             <?php
             }
-            ?>
+            ?>  
 
-
-            
-
-        <div>
-            
-            <input type="submit" name="btn_guardar"/>
+        <div class="botonEj2">
+            <label class="btn btn-success"> Generar Mapa
+            <input hidden type="submit" name="btn_guardar"/>
+            </label>
         </div>
     </form>
-        <button onclick="reiniciar()">Reiniciar</button>
-
-
-
+        <div class="botonEj2">
+        <button class="btn btn-danger" onclick="reiniciar()">Reiniciar</button>
+        </div>
 </body>
 </html>

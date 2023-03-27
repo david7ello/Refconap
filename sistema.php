@@ -32,12 +32,10 @@ include("menu.php")
 		<div class="list-group" >
 			<br>
 			<div class="row">
-				<div class="col-md-5 text-center" >
-					<div class="thumbnail" style="height: auto;">
-						<img src="images/REFCONAP.png" alt="Ejercicio 1" width="220px" height="170px%">
+				<div class="col-md-5 text-center" style="background-size: contain; margin-right:30px; height:auto; background-image: url('../images/azul.jpg') ">
+					<div>
 
-
-						<div class="caption">
+						<div style="z-index:10; top:-5px;" class="caption">
 							<h3> Ejercicio 1</h3>
 							<p>Grupos de procesos</p>
 							<p>
@@ -55,10 +53,10 @@ include("menu.php")
 						</div>
 					</div>
 				</div>
-				<div class="col-md-5 text-center">
-					<div class="thumbnail" style="height:auto;">
-						<img src="images/REFCONAP.png" alt="Ejercicio 2" width="220px" height="170px%">
-						<div class="caption">
+				<div class="col-md-5 text-center" style="background-size: contain; height:auto; background-image: url('../images/morado.jpg') ">
+					<div>
+	
+						<div style="z-index:10; top:-5px;" class="caption">
 							<h3> Ejercicio 2</h3>
 							<p>Preguntas y respuestas</p>
 								<p>

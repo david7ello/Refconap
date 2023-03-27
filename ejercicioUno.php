@@ -82,15 +82,26 @@ include("head.php");
             e.target.appendChild(document.getElementById(data));
         }
     </script>
+
+
+
+
     <?php
     include("menu.php");
 
     if ($data == null || $data[0] == null){
     ?>
 
+    
+
     <button class="btn-flotante" onclick="genPDF()" >Generar Pdf</button>
 
     <div class="ejerUno" id="pantalla1">
+
+        <div style="margin-top: 10px; text-align:center;">
+            <p style="color:blue;">Arrastra y suelta cada área del conocimiento al encabezado del grupo de procesos que consideres le corresponde  </p>
+        </div>
+
         <header>
             <h2>GRUPOS DE PROCESOS</h2>
         </header>

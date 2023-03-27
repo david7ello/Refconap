@@ -6,6 +6,16 @@ include("menu.php");
 
 $idUsuario = $_SESSION['id_user'];
 
+$queryPendientes = "SELECT pdf_2 FROM registro_calificaciones WHERE users_id=$idUsuario";
+$result = mysqli_query($link, $queryPendientes);
+$pendientes = mysqli_fetch_array($result);
+if (!empty($pendientes['pdf_2'])){
+    echo '<pre> Actividad resuelta </pre>';
+    // echo '<div> '.print_r($pendientes) . '</div>';
+    // echo '<div> Puedes resolver actividad </div>';
+}else{
+
+
 $rol = $_SESSION['tipo'];
 if($rol==1){
     $queryActividades = "SELECT DISTINCT cursos.nombre, cursos.instructor, ejercicio_2.nombre_actividad, ejercicio_2.respuestas_id FROM ejercicio_2 INNER JOIN cursos ON (ejercicio_2.cursos_id = cursos.id)";
@@ -76,31 +86,15 @@ $actividades = mysqli_query($link, $queryActividades);
 		</table>
 	</div>
 
+    </form> 
 
 
-
-    <!-- <form action="resolverEjercicio2.php" method="post" enctype="multipart/form-data">
-        <h2>Selecciona tu curso</h2>
-        <input name="curso" list="cursos" />
-        <?php
-        echo '<datalist id="cursos"/>';
-        while ($curso= $cursos->fetch_assoc()){
-            echo '<option>'.$curso['nombre'].'</option>';
-        }
-        echo '</datalist>';
-        ?>
-        <h2>Selecciona la actividad</h2>
-        <input name="actividad" list="actividades"/>
-        <?php
-            echo '<datalist id="actividades">';
-            while($actividad = $actividades->fetch_assoc()){
-                echo '<option>'.$actividad['nombre_actividad'].'</option>';
-            }
-            echo '</datalist>'
-        ?>
-        <input name="btn_submit" type="submit"/>
-    </form> -->
 
 </body>
 
+
 </html>
+
+<?php
+}
+?>

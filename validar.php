@@ -83,7 +83,7 @@ if ($password == "" or $correo == "" or $captcha == "") {
 			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $row["nombre"];
-			// $_SESSION['password'] = $password;
+			$_SESSION['apellidos'] = $row["apellidos"];
 			header("Location:sistema.php");
 		} else {
 			$_SESSION['error_session'] = "Clave de Administrador y/o Contrase&ntilde;a  Incorrecta.";
@@ -102,7 +102,7 @@ if ($password == "" or $correo == "" or $captcha == "") {
 			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $row['nombre'];
-			
+			$_SESSION['apellidos'] = $row["apellidos"];
 			header("Location:sistema.php");
 		} else {
 			$_SESSION['error_session'] = "Clave de Instructor y/o Contrase&ntilde;a  Incorrecta.";
@@ -122,7 +122,7 @@ if ($password == "" or $correo == "" or $captcha == "") {
 			$_SESSION['tipo'] = $row["roles"];
 			$_SESSION['id_user'] = $row["id_user"];
 			$_SESSION['nombre'] = $row["nombre"];
-			
+			$_SESSION['apellidos'] = $row["apellidos"];
 			header("Location:sistema.php");
 		} else {
 			$_SESSION['error_session'] = "Clave de Participante y/o Contrase&ntilde;a  Incorrecta.";

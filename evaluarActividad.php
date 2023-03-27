@@ -70,14 +70,17 @@ include("menu.php")
                  
                 $calificaciones = mysqli_query($link, $participantesQuery);
                 // $calificacion = mysqli_fetch_array($calificaciones);
+                
                 while ($calificacion = $calificaciones->fetch_assoc()){
+                    if($_SESSION['nombre']!=$calificacion['nombre_usuario']){
+                    
                 echo '<tr>';
                 echo '<td>' . $calificacion['nombre'] . '</td>';
                 echo '<td>' . $calificacion['nombre_actividad_1'] . '</td>';
                 echo '<td>' . $calificacion['nombre_actividad_2'] . '</td>';
                 echo '<td>'. $calificacion['nombre_usuario']. ' ' . $calificacion["apellidos"] . '</td>';
-                echo '<td>' . $calificacion['calificacion1'] . '</td>';
-                echo '<td>' . $calificacion['calificacion2'] . '</td>';
+                echo '<td style="text-align:center;">' . $calificacion['calificacion1'] . '</td>';
+                echo '<td style="text-align:center;">' . $calificacion['calificacion2'] . '</td>';
                 if ($calificacion['calificacion1'] == "" || $calificacion['calificacion2'] == ""){
                     echo '<td><a href="calificar.php?'
                     .'participante='.$calificacion['nombre_usuario']
@@ -96,8 +99,10 @@ include("menu.php")
                     .'&id='.$calificacion['id_user'].'">Editar</a></td>'; 
                 }
                 echo '</tr>';
-                }
+                } 
+            }
                 ?>
+
             
         </tbody>
     </table>
